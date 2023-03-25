@@ -1,4 +1,8 @@
+const moment = require('moment');
+moment.locale("zh-cn")
+
 module.exports = {
+    base: "/myblog/",
     title: "hfl的个人博客",
     description: "个人的项目经验记录",
     head: [
@@ -6,6 +10,17 @@ module.exports = {
         ['meta', { rel: 'author', content: 'hfl' }],
         ['meta', { rel: 'keywords', content: 'vuepress个人技术文档，个人博客，项目经验记录' }]
     ],
+    plugins: [
+        [
+          '@vuepress/last-updated',
+          {
+            transformer: (timestamp) => {
+              // 不要忘了安装 moment
+              return moment(timestamp).format("yyyy-MM-DD HH:mm:ss")
+            }
+          }
+        ]
+      ],
     themeConfig: {
         // 最后更新时间
         lastUpdated: '更新时间',
