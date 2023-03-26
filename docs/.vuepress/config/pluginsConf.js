@@ -15,5 +15,6 @@ module.exports = {
             message: "发现更新内容",
             buttonText: "刷新"
         }
-    }
+    },
+    '@vuepress/back-to-top':true,
 }
