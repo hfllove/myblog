@@ -1,68 +1,22 @@
-const moment = require('moment');
-moment.locale("zh-cn")
+
+
+const headConf = require('./config/headConf')
+const pluginsConf = require('./config/pluginsConf')
+const navConf = require('./config/navConf')
+const sidebarConf = require('./config/sidebarConf')
 
 module.exports = {
     // base: "/myblog/",
     title: "hfl的个人博客",
     description: "个人的项目经验记录",
-    head: [
-        ['link', { rel: 'icon', href: '/logo.png' }],
-        ['link', { rel: 'manifest', href: '/manifest.json' }],
-        ['meta', { name: 'theme-color', content: '#3eaf7c' }],
-        ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-        ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
-        ['link', { rel: 'apple-touch-icon', href: '/icons/icon-152x152.png' }],
-        ['link', { rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#3eaf7c' }],
-        ['meta', { name: 'msapplication-TileImage', content: '/icons/icon-144x144.png' }],
-        ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
-        ['meta', { rel: 'author', content: 'hfl' }],
-        ['meta', { rel: 'keywords', content: 'vuepress个人技术文档，个人博客，项目经验记录' }]
-    ],
-    plugins: {
-        // 对象式
-        '@vuepress/last-updated': {
-            transformer: (timestamp) => {
-                // 不要忘了安装 moment
-                return moment(timestamp).format("yyyy-MM-DD HH:mm:ss")
-            }
-        },
-        '@vuepress/pwa': {
-            serviceWorker: true,
-            updatePopup: {
-                message: "发现更新内容",
-                buttonText: "刷新"
-            }
-        }
-    },
+    head: headConf,
+    plugins: pluginsConf,
     themeConfig: {
         // 最后更新时间
         lastUpdated: '更新时间',
         // 首页左上角的图标
         logo: '/assets/img/logo1.png',
-        nav: [
-            { text: '首页', link: '/' },
-            { text: '关于', link: '/about/' },
-            { text: 'github地址', link: 'https://github.com/hfllove/myblog' },
-            {
-                text: '前端',//一级导航标题
-                items: [
-                    {
-                        text: '测试', //二级导航标题
-                        items: [
-                            { text: '测试1', link: '/test/test1/' },//三级导航标题
-                            { text: '测试2', link: '/test/test2/' }
-                        ]
-                    },
-                    {
-                        text: '分组2',
-                        items: [
-                            { text: '子分组1', link: '/language/chinese/' },
-                            { text: '子分组2', link: '/language/japanese/' }
-                        ]
-                    }
-                ]
-            }
-        ],
+        nav: navConf,
         // 0. 自动生成侧边栏
         // sidebar: 'auto',
 
@@ -96,29 +50,7 @@ module.exports = {
         // ],
 
         // 3. 对象形式-多个侧边栏(一个路径对应一个侧边栏)
-        sidebar: {
-            '/guide/': [
-                '',
-                'css-a',
-                'css-b',
-                'css-c'
-            ],
-            '/test/test1/': [
-                '',
-            ],
-            '/test/test2/': [
-                '',
-            ],
-            '/test/': [
-                ''
-            ],
-            '/about/': [
-                ''
-            ],
-            '/': [
-                ''
-            ]
-        },
+        sidebar: sidebarConf,
         sidebarDepth: 2
     }
 }
