@@ -10,7 +10,7 @@ npm run build
 cd docs/.vuepress/dist
 
 # 如果是发布到自定义域名
-# echo 'www.example.com' > CNAME
+echo 'myblog.hfllog.space' > CNAME
 
 git init
 git add -A
@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:hfllove/myblog.git master:main
+git push -f git@github.com:hfllove/myblog.git master:gh-page
 
 cd -
