@@ -1,5 +1,3 @@
-
-
 const headConf = require('./config/headConf')
 const pluginsConf = require('./config/pluginsConf')
 const navConf = require('./config/navConf')
