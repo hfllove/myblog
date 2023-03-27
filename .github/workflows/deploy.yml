@@ -61,6 +61,8 @@ jobs:
         with:
           node-version:  ${{ matrix.node }}
       - name: Install dependencies
+        run: |
+         git rm 'docs/.vuepress/dist'
         run: npm ci
       - name: Build VuePress
         run: npm run build
