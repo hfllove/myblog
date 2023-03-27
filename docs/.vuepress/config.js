@@ -4,7 +4,7 @@ const navConf = require('./config/navConf')
 const sidebarConf = require('./config/sidebarConf')
 
 module.exports = {
-    base: "/",
+    // base: "/",
     title: "hfl的个人博客",
     description: "个人的项目经验记录",
     head: headConf,
