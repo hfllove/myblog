@@ -51,7 +51,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: 'main'
+          ref: 'master'
           persist-credentials: false
           fetch-depth: 0
         env:
