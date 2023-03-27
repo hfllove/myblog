@@ -51,7 +51,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: 'master'
+          ref: 'main'
           persist-credentials: false
           fetch-depth: 0
         env:
@@ -61,8 +61,8 @@ jobs:
         with:
           node-version:  ${{ matrix.node }}
       - name: Install dependencies
-        run: |
-         git rm 'docs/.vuepress/dist'
+      #   run: |
+      #    git rm 'docs/.vuepress/dist'
         run: npm ci
       - name: Build VuePress
         run: npm run build
@@ -73,8 +73,8 @@ jobs:
          cd docs/.vuepress/dist
          git config --global init.defaultBranch master
          git init
-         git config user.name "zchaoGe"
+         git config user.name "hfllove"
          git config user.email "${{ secrets.GIT_EMAIL }}"
          git add .
          git commit -m "Deploying to gh-pages from @ $GITHUB_SHA in $(date +"%Y年%m月%d日 %T %Z")"
-         git push -f https://zchaoGe:${{ secrets.ACCESS_TOKEN }}@github.com/zchaoGe/blog.git master:gh-pages         
+         git push -f https://hfllove:${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/hfllove/myblog.git master:gh-pages         
