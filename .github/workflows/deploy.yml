@@ -51,7 +51,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
         with:
-          ref: 'main'
+          ref: 'master'
           persist-credentials: false
           fetch-depth: 0
         env:
@@ -72,10 +72,10 @@ jobs:
          TZ: Asia/Shanghai
         run: |
          cd docs/.vuepress/dist
-         git config --global init.defaultBranch main
+         git config --global init.defaultBranch master
          git init
          git config user.name "hfllove"
          git config user.email "${{ secrets.GIT_EMAIL }}"
          git add .
          git commit -m "Deploying to gh-pages from @ $GITHUB_SHA in $(date +"%Y年%m月%d日 %T %Z")"
-         git push -f https://hfllove:${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/hfllove/myblog.git main:gh-pages         
+         git push -f https://hfllove:${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/hfllove/myblog.git master:gh-pages         
