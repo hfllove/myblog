@@ -12,7 +12,7 @@ set -e
 # # 如果是发布到自定义域名
 # echo 'myblog.hfllog.space' > CNAME
 
-git add .
+git add -A
 git commit -m "提交更新"
 # git commit -m 'deploy'
 git push -f origin main:main
