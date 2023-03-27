@@ -15,7 +15,7 @@ set -e
 git add -A
 git commit -m "提交更新"
 # git commit -m 'deploy'
-git push -f origin main:main
+git push origin main:main
 
 # 如果发布到 https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
