@@ -5,3 +5,8 @@ node_modules
 
 # dist
 /dist
+
+# 私钥 gh-pages 公钥 gh-pages.pub
+gh-pages
+
+gh-pages.pub
