@@ -9,6 +9,10 @@ title: about页面
 ### 关于about 二级标题3
 ## 关于about 一级标题4
 
+![logo测试](/logo.png)
+
+<img class="custom" :src="$withBase('/logo.png')" alt="logo">
+
 ## 岳阳楼记
 
 岳阳楼记
