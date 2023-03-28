@@ -10,6 +10,7 @@ module.exports = {
     head: headConf,
     plugins: pluginsConf,
     themeConfig: {
+        searchMaxSuggestions: 10,
         // 最后更新时间
         lastUpdated: '更新时间',
         // 首页左上角的图标
@@ -49,6 +50,10 @@ module.exports = {
 
         // 3. 对象形式-多个侧边栏(一个路径对应一个侧边栏)
         sidebar: sidebarConf,
+        rightMenuBar: true,
         sidebarDepth: 2
+    },
+    markdown: {
+        extractHeaders: [ 'h2', 'h3', 'h4' ]
     }
 }

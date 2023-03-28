@@ -49,4 +49,5 @@ module.exports = {
         }
     },
     'img-lazy': true, // 图片懒加载
+    '@vuepress/active-header-links': true, // 滚动时激活侧边链接的插件
 } 
