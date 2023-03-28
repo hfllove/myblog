@@ -79,8 +79,4 @@ jobs:
          git config user.email "${{ secrets.GIT_EMAIL }}"
          git add .
          git commit -m "Deploying to gh-pages from @ $GITHUB_SHA in $(date +"%Y年%m月%d日 %T %Z")"
-<<<<<<< HEAD
-         git push -f https://hfllove:${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/hfllove/myblog.git main:gh-pages         
-=======
-         git push -f https://hfllove:${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/hfllove/myblog.git main:gh-pages         
->>>>>>> 20c6043 (“提交最新的更新测试”)
+         git push -f https://hfllove:${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/hfllove/myblog.git main:gh-pages
