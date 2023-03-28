@@ -48,6 +48,7 @@ title: about页面
 
 不知乘月几人归，落月摇情满江树。(落月 一作：落花)
 
+<<<<<<< HEAD
 ## 测试 githhub Action 自动化部署
 
 ### 低价打卡打卡
@@ -97,3 +98,5 @@ title: about页面
 
 ### JavaScript学习
 移步 wangdoc.com 入门学习 javascript 语言
+=======
+>>>>>>> 20c6043 (“提交最新的更新测试”)
