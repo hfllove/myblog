@@ -47,5 +47,6 @@ module.exports = {
               "/test/test2/": "测试2"
             }
         }
-    }
+    },
+    'img-lazy': true, // 图片懒加载
 } 
