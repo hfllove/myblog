@@ -19,16 +19,10 @@ footer: MIT Licensed | Copyright © 2023-hfllove
 # pwa 更新提示弹框插件
 测试 pwa 插件
 
-<<<<<<< HEAD
 # 测试 github Pages 的部署分支是否为 main
 测试111111
 测试222
 # 测试 github pages的部署分支
 看看部署的分支是不是gh-pages
 # xuebodocjrkfofoemke
-=======
-# 测试 github Pages 的部署分支是否为 gh-pages
-deploy 分支为 gh-pages
-
->>>>>>> 20c6043 (“提交最新的更新测试”)
 
