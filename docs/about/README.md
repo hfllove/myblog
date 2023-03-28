@@ -1,6 +1,8 @@
 ---
 title: about页面
 ---
+## 图片测试
+![45663c9f2ce54eb2ae8628efb0c43390](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/45663c9f2ce54eb2ae8628efb0c43390.5ytoakkj81w0.webp)
 
 ![logo测试](/logo.png)
 
