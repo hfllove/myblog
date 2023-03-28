@@ -2,8 +2,8 @@
 home: true
 title: 首页
 heroImage: /hero.jpg
-heroText: Hero 标题
-tagline: Hero 副标题
+heroText: 个人博客
+tagline: hfl 的个人技术文档
 actionText: 快速上手 →
 actionLink: /guide/
 features:
@@ -19,10 +19,7 @@ footer: MIT Licensed | Copyright © 2023-hfllove
 # pwa 更新提示弹框插件
 测试 pwa 插件
 
-# 测试 github Pages 的部署分支是否为 main
-测试111111
-测试222
-# 测试 github pages的部署分支
+# 测试 github pages的部署分支是否为 gh-pages
 看看部署的分支是不是gh-pages
-# xuebodocjrkfofoemke
+
 
