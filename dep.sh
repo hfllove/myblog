@@ -12,7 +12,7 @@ set -e
 # # 如果是发布到自定义域名
 # echo 'myblog.hfllog.space' > CNAME
 
-git add -A
+git add .
 git commit -m "提交更新"
 # git commit -m 'deploy'
 git push origin main:main
@@ -22,5 +22,3 @@ git push origin main:main
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:hfllove/myblog.git master:gh-pages
-
-cd -
