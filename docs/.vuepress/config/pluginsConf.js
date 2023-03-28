@@ -19,7 +19,7 @@ module.exports = {
     },
     '@vuepress/back-to-top':true,
     '@vuepress/medium-zoom': {
-        selector: 'img.custom',// 只有添加 class 名为 custom 的图片，才支持缩放
+        selector: 'img',// 只有添加 class 名为 custom 的图片，才支持缩放
         // medium-zoom options here
         // See: https://github.com/francoischalifour/medium-zoom#options
         options: {
