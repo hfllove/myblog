@@ -37,7 +37,7 @@ module.exports = {
     'vuepress-plugin-smooth-scroll': true, // VuePress 站点中使用平滑滚动
     'reading-progress': true, // 阅读进度条
     "vuepress-plugin-auto-sidebar": {
-        sidebarDepth: 2,
+        // sidebarDepth: 2,
         title: {
             mode: "titlecase",
             map: {
