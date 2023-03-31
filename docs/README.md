@@ -14,8 +14,6 @@ features:
 footer: MIT Licensed | Copyright © 2023-hfllove
 ---
 
-<GlobalTableOfContents />
-
 # pwa 更新提示弹框插件
 测试 pwa 插件
 

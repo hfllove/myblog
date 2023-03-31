@@ -2,7 +2,57 @@
 title: about页面
 ---
 
-## 图片测试
+## Tab插件测试
+
+<RecoDemo>
+  <template slot="code-template">
+    <<< @/docs/.vuepress/demo/demo.vue?template
+  </template>
+  <template slot="code-script">
+    <<< @/docs/.vuepress/demo/demo.vue?script
+  </template>
+  <template slot="code-style">
+    <<< @/docs/.vuepress/demo/demo.vue?style
+  </template>
+</RecoDemo>
+
+<RecoDemo>
+   <template slot="code-md">
+    这段代码将数组 arr 通过 reduce 方法转换成一个新的数组 result。<br>在每次迭代中，我们检查当前元素的 a 属性是否为 2。<br>如果是，我们将其作为新的子数组的第一个元素加入到结果数组 acc 中。<br>否则，我们将其添加到最后一个子数组中。如果结果数组中还没有子数组，则忽略当前元素。
+  </template>
+  <template slot="code-js">
+    <<< @/docs/.vuepress/demo/index.js
+  </template>
+  <template slot="code-html">
+    <<< @/docs/.vuepress/demo/index.html
+  </template>
+  <img src="/images/carbon.png" slot="demo" />
+</RecoDemo>
+
+
+
+__这段代码将数组 arr 通过 reduce 方法转换成一个新的数组 result。在每次迭代中，我们检查当前元素的 a 属性是否为 2。如果是，我们将其作为新的子数组的第一个元素加入到结果数组 acc 中。否则，我们将其添加到最后一个子数组中。如果结果数组中还没有子数组，则忽略当前元素。__
+
+
+
+
+``` javascript
+const arr = [{a:2},{a:3},{a:2},{a:2},{a:3}];
+
+const result = arr.reduce((acc, curr) => {
+  if (curr.a === 2) {
+    acc.push([curr]);
+  } else if (acc.length) {
+    acc[acc.length - 1].push(curr);
+  }
+  return acc;
+}, []);
+
+console.log(result);
+
+```
+
+
 ![45663c9f2ce54eb2ae8628efb0c43390](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/45663c9f2ce54eb2ae8628efb0c43390.5ytoakkj81w0.webp)
 
 ![logo测试](/logo.png)

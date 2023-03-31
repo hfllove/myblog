@@ -17,7 +17,6 @@ module.exports = {
             buttonText: "刷新"
         }
     },
-    '@vuepress/back-to-top':true,
     '@vuepress/medium-zoom': {
         selector: 'img',// 只有添加 class 名为 custom 的图片，才支持缩放
         // medium-zoom options here
@@ -50,4 +49,17 @@ module.exports = {
     },
     'img-lazy': true, // 图片懒加载
     '@vuepress/active-header-links': true, // 滚动时激活侧边链接的插件
+    '@vuepress-reco/vuepress-plugin-back-to-top':{
+        visibilityHeight: 300,
+        customStyle:{
+            right:'12%',
+            bottom: '6rem',
+            width: '3rem',
+            height: '3rem',
+            'border-radius': '.25rem',
+            'line-height': '3rem',
+            backgroundColor: 'rgba(231, 234, 241,.5)'
+        }
+    },// 回到顶部插件
+    '@vuepress-reco/extract-code':true,
 } 

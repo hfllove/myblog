@@ -5,6 +5,7 @@ const sidebarConf = require('./config/sidebarConf')
 
 module.exports = {
     // base: "/",
+    // permalink: "/:regular",
     title: "hfl的个人博客",
     description: "个人的项目经验记录",
     head: headConf,
@@ -50,10 +51,10 @@ module.exports = {
 
         // 3. 对象形式-多个侧边栏(一个路径对应一个侧边栏)
         sidebar: sidebarConf,
-        sidebarDepth: 2
+        // sidebarDepth: 2
     },
     markdown: {
-        extractHeaders: [ 'h2', 'h3' ],
+        extractHeaders: [ 'h2', 'h3','h4','h5' ],
         lineNumbers: true
     }
 }
