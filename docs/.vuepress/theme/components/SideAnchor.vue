@@ -98,10 +98,10 @@ export default {
                 return item.parentNode.tagName.indexOf('2')== -1
             })
             return dom_list.filter(itemArray=>{
-                // console.log(itemArray.parentNode.id,"测试dom_list的item")
+                console.log(itemArray.parentNode.id,"静态标题的id")
                 return this.filterArray.some(itemName=>{
-                    // console.log(itemName.title,"测试filterArray的item")
-                    return itemArray.parentNode.id==itemName.title.toLowerCase()
+                    console.log(itemName.title,"路由地址截取的标题")
+                    return itemArray.parentNode.id==itemName.slug.toLowerCase()
                     })
             })
         }
