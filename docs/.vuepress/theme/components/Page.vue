@@ -25,84 +25,40 @@ export default {
       offsetHeight: 0,
     };
   },
-//   watch: {
-//     "$route.hash": {
-//       handler() {
-//         Vue.nextTick(() => {
-//           const clientHeight = document.documentElement.clientHeight;
-//           let offsetHeight = this.$refs.page.offsetHeight
-//           this.changeFixed(clientHeight,offsetHeight);
-//         });
-//       },
-//       deep: true,
-//     },
-//   },
-//   created() {
-//   // 注册 $route 对象的 afterEach 钩子
-//   this.$router.afterEach(() => {
-//     Vue.nextTick(() => {
-//       const clientHeight = document.documentElement.clientHeight;
-//       let offsetHeight = this.$refs.page.offsetHeight;
-//       this.changeFixed(clientHeight, offsetHeight);
-//     });
-//   });
-// },
-//   mounted() {
-//     // 获取浏览器可视区域高度
-//     const clientHeight = document.documentElement.clientHeight;
-//     let offsetHeight = this.$refs.page.offsetHeight
-//     this.changeFixed(clientHeight,offsetHeight)
-//   },
-//   methods: {
-//     changeFixed(clientHeight,offsetHeight) {
-//       // 动态修改样式
-//       if ((offsetHeight == clientHeight)) {
-//         this.$refs.page.style.height = "";
-//       } else if (offsetHeight < clientHeight) {
-//         console.log(offsetHeight, "111，小于，测试offsetHeight的值");
-//         this.$refs.page.style.height = clientHeight + "px";
-//       } else {
-//         console.log(offsetHeight, "222，大于，测试offsetHeight的值");
-//         this.$refs.page.style.height = offsetHeight + "px";
-//       }
-//     },
-//   },
-    watch: {
-  "$route.hash": {
-    handler() {
-      Vue.nextTick(() => {
-        this.changeFixed();
-      });
+  watch: {
+    "$route.hash": {
+      handler() {
+        Vue.nextTick(() => {
+          this.changeFixed();
+        });
+      },
+      deep: true,
     },
-    deep: true,
   },
-},
-mounted() {
-  window.addEventListener("resize", this.changeFixed);
-  Vue.nextTick(()=>{
-    this.changeFixed();
-  })
-  
-},
-updated() {
-  this.changeFixed();
-},
-beforeDestroy() {
-  window.removeEventListener("resize", this.changeFixed);
-},
-methods: {
-  changeFixed() {
-    this.$refs.page.style.height = ""
-      const clientHeight = document.documentElement.clientHeight;
-    let offsetHeight = this.$refs.page.offsetHeight;
-    if (offsetHeight < clientHeight) {
-      this.$refs.page.style.height = clientHeight + "px";
-    } else {
+  mounted() {
+    window.addEventListener("resize", this.changeFixed);
+    // Vue.nextTick(() => {
+      this.changeFixed();
+    // });
+  },
+  // updated() {
+  //   this.changeFixed();
+  // },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.changeFixed);
+  },
+  methods: {
+    changeFixed() {
       this.$refs.page.style.height = "";
-    }
-    
+      const clientHeight = document.documentElement.clientHeight;
+      let offsetHeight = this.$refs.page.offsetHeight;
+      if (offsetHeight < clientHeight) {
+        this.$refs.page.style.height = clientHeight + "px";
+      } else {
+        this.$refs.page.style.height = "";
+      }
+    },
   },
-},
 };
 </script>
 
@@ -116,7 +72,7 @@ methods: {
   background-position: top left;
   // background-color: #f2f3f5;
   background-color: #c7f2d1;
-  // background-color: transparent;
+  transition: all .4s ease-in-out
 }
 
 .page-container {
