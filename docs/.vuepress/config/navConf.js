@@ -7,7 +7,7 @@ module.exports = [
                 text: 'javascript', //二级导航标题
                 items: [
                     { text: 'vue相关', link: '/javascript/vue相关/' },//三级导航标题
-                    { text: '测试2', link: '/test/test2/' }
+                    { text: '数组方法', link: '/javascript/数组方法/' }
                 ]
             },
             {
@@ -20,6 +20,7 @@ module.exports = [
         ]
     },
     { text: '关于', link: '/about/' },
+    {text:'戒文',link:'/戒文/'},
     { text: 'github地址', link: 'https://github.com/hfllove/myblog' },
     
 ]

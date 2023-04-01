@@ -20,43 +20,34 @@ import Vue from "vue";
 export default {
   components: { PageEdit, PageNav, SideAnchor },
   props: ["sidebarItems"],
-  data() {
-    return {
-      offsetHeight: 0,
-    };
-  },
   watch: {
+    // 监视路由的变化，在下一次更新DOM的时候，调用 changeFixed 函数
     "$route.hash": {
       handler() {
         Vue.nextTick(() => {
           this.changeFixed();
         });
       },
+      // 深度监视
       deep: true,
     },
   },
   mounted() {
-    window.addEventListener("resize", this.changeFixed);
-    // Vue.nextTick(() => {
       this.changeFixed();
-    // });
-  },
-  // updated() {
-  //   this.changeFixed();
-  // },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.changeFixed);
   },
   methods: {
     changeFixed() {
+      // 清除上一次设置的元素容器高度
       this.$refs.page.style.height = "";
+      // 获取页面可视区域的高度
       const clientHeight = document.documentElement.clientHeight;
+      // 获取页面元素容器的高度
       let offsetHeight = this.$refs.page.offsetHeight;
+      // 如果当前元素的容器高度，小于页面可视区域的高度
       if (offsetHeight < clientHeight) {
+        // 将页面可视高度，设置为页面元素容器的高度
         this.$refs.page.style.height = clientHeight + "px";
-      } else {
-        this.$refs.page.style.height = "";
-      }
+      } 
     },
   },
 };
