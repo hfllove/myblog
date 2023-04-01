@@ -45,9 +45,9 @@ export default {
     margin: 0 auto;
     padding: 1rem 2rem 2rem;
     // background-color: #fff;
-    background-color: rgba(66, 66, 66, 0.9) !important;
+    background-color: rgba(250, 249, 222, 0.9) !important;
     // background: rgba(0,0,0,0);
-    color:#eee;
+    // color:#eee;
     // font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
     font: 16px/1.7 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
     -webkit-text-size-adjust: 100%;
