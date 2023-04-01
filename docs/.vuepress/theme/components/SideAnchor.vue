@@ -21,8 +21,6 @@
 <script>
 import debounce from 'lodash.debounce';
 import Vue from 'vue'
-// 引入封装的动态标题函数
-import { isActive } from '../util'
 export default {
     data() {
         return {
