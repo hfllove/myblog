@@ -138,7 +138,7 @@ export default {
     font-size 0.9em
     .prefix
       font-weight 500
-      color lighten($textColor, 25%)
+      color lighten($textColor, 45%)
     .time
       font-weight 400
       color #767676

@@ -68,12 +68,12 @@ div[class*="language-"]
           height 100%
           background-color rgba(0, 0, 0, 66%)
     pre
-      padding-left $lineNumbersWrapperWidth + 1 rem
+      padding-left $lineNumbersWrapperWidth - 0.5 rem
       vertical-align middle
     .line-numbers-wrapper
       position absolute
       top 0
-      width $lineNumbersWrapperWidth
+      width $lineNumbersWrapperWidth - 1.5 rem
       text-align center
       color rgba(255, 255, 255, 0.3)
       padding 1.25rem 0
@@ -91,10 +91,10 @@ div[class*="language-"]
       z-index 2
       top 0
       left 0
-      width $lineNumbersWrapperWidth
+      width $lineNumbersWrapperWidth - 1.5rem
       height 100%
       border-radius 6px 0 0 6px
-      border-right 1px solid rgba(0, 0, 0, 66%)
+      border-right 1px solid rgba(0, 0, 0, 12%)
       background-color $codeBgColor
 
 
