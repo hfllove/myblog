@@ -34,7 +34,7 @@ export default {
     background-size: 23px 23px;
     background-position: top left;
     // background-color: #f2f3f5;
-    background-color: #C7EDCC;
+    background-color: #c7f2d1;
 
 .page-main 
     display: block; 
