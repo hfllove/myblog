@@ -1,14 +1,13 @@
 <template>
   <main class="page" ref="page">
     <slot name="top" />
-    <div class="page-container" ref="page-container">
+    <div class="page-container" ref="pageContainer">
       <Content class="theme-default-content" />
       <PageEdit />
       <PageNav v-bind="{ sidebarItems }" />
     </div>
     <SideAnchor />
     <slot name="bottom" />
-    
   </main>
 </template>
 
@@ -16,33 +15,94 @@
 import PageEdit from "@theme/components/PageEdit.vue";
 import PageNav from "@theme/components/PageNav.vue";
 import SideAnchor from "@theme/components/SideAnchor.vue";
+import Vue from "vue";
 
 export default {
   components: { PageEdit, PageNav, SideAnchor },
-  data() {
-        return {
-            clientHeight: ''
-        };
-    },
-    watch: {
-        // 如果 clientHeight 发生改变，这个函数就会运行
-        clientHeight() {
-            this.changeFixed(this.clientHeight);
-        }
-    },
-    mounted() {
-        // 获取浏览器可视区域高度
-        this.clientHeight = document.documentElement.clientHeight; // document.body.clientWidth;
-        window.onresize = function temp() { // 在窗口或框架被调整大小时触发
-            this.clientHeight = document.documentElement.clientHeight;
-        };
-    },
-    methods: {
-        changeFixed(clientHeight) { // 动态修改样式
-            this.$refs.page.style.height = clientHeight + 'px';
-        }
-    },
   props: ["sidebarItems"],
+  data() {
+    return {
+      offsetHeight: 0,
+    };
+  },
+//   watch: {
+//     "$route.hash": {
+//       handler() {
+//         Vue.nextTick(() => {
+//           const clientHeight = document.documentElement.clientHeight;
+//           let offsetHeight = this.$refs.page.offsetHeight
+//           this.changeFixed(clientHeight,offsetHeight);
+//         });
+//       },
+//       deep: true,
+//     },
+//   },
+//   created() {
+//   // 注册 $route 对象的 afterEach 钩子
+//   this.$router.afterEach(() => {
+//     Vue.nextTick(() => {
+//       const clientHeight = document.documentElement.clientHeight;
+//       let offsetHeight = this.$refs.page.offsetHeight;
+//       this.changeFixed(clientHeight, offsetHeight);
+//     });
+//   });
+// },
+//   mounted() {
+//     // 获取浏览器可视区域高度
+//     const clientHeight = document.documentElement.clientHeight;
+//     let offsetHeight = this.$refs.page.offsetHeight
+//     this.changeFixed(clientHeight,offsetHeight)
+//   },
+//   methods: {
+//     changeFixed(clientHeight,offsetHeight) {
+//       // 动态修改样式
+//       if ((offsetHeight == clientHeight)) {
+//         this.$refs.page.style.height = "";
+//       } else if (offsetHeight < clientHeight) {
+//         console.log(offsetHeight, "111，小于，测试offsetHeight的值");
+//         this.$refs.page.style.height = clientHeight + "px";
+//       } else {
+//         console.log(offsetHeight, "222，大于，测试offsetHeight的值");
+//         this.$refs.page.style.height = offsetHeight + "px";
+//       }
+//     },
+//   },
+    watch: {
+  "$route.hash": {
+    handler() {
+      Vue.nextTick(() => {
+        this.changeFixed();
+      });
+    },
+    deep: true,
+  },
+},
+mounted() {
+  window.addEventListener("resize", this.changeFixed);
+  Vue.nextTick(()=>{
+    this.changeFixed();
+  })
+  
+},
+updated() {
+  this.changeFixed();
+},
+beforeDestroy() {
+  window.removeEventListener("resize", this.changeFixed);
+},
+methods: {
+  changeFixed() {
+    this.$refs.page.style.height = ""
+      const clientHeight = document.documentElement.clientHeight;
+    let offsetHeight = this.$refs.page.offsetHeight;
+    if (offsetHeight < clientHeight) {
+      this.$refs.page.style.height = clientHeight + "px";
+    } else {
+      this.$refs.page.style.height = "";
+    }
+    
+  },
+},
 };
 </script>
 
@@ -51,7 +111,6 @@ export default {
 
 .page {
   display: block;
-  overflow: auto;
   background-image: linear-gradient(90deg, rgba(50, 0, 0, 0.05) 3%, rgba(0, 0, 0, 0) 3%), linear-gradient(360deg, rgba(50, 0, 0, 0.05) 3%, rgba(0, 0, 0, 0) 3%);
   background-size: 23px 23px;
   background-position: top left;
