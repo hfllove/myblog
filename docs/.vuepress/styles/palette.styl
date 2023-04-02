@@ -20,3 +20,51 @@ $readingProgressImage = linear-gradient(-120deg, #E50743 0%, #F9870F 15%, #E8ED3
     background-image: linear-gradient(to left, #87CEFA 0%, #fff 100%);
     font-size: 1.1em;
 }
+
+.viewer-toolbar > ul > li {
+    background-color: rgba(0, 0, 0, 50%);
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+    float: left;
+    height: 32px;
+    overflow: hidden;
+    transition: background-color 0.15s;
+    width: 32px;
+}
+.viewer-toolbar > ul > li + li {
+    margin-left: 5px;
+}
+.viewer-prev,.viewer-next {
+    display: none;
+}
+.viewer-zoom-in::before {
+    background-position: 4px 3px;
+    content: "Zoom In";
+}
+.viewer-zoom-out::before {
+    background-position: -16px 3px;
+    content: "Zoom Out";
+}
+.viewer-one-to-one::before {
+    background-position: -36px 3px;
+    content: "One to One";
+}
+.viewer-reset::before {
+    background-position: -56px 3px;
+    content: "Reset";
+}
+.viewer-toolbar > ul > .viewer-large {
+    height: 30px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    width: 30px;
+}
+.viewer-rotate-left::before {
+    background-position: -136px 3px;
+    content: "Rotate Left";
+}
+.viewer-rotate-right::before {
+    background-position: -156px 3px;
+    content: "Rotate Right";
+}
