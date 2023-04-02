@@ -17,15 +17,15 @@ module.exports = {
             buttonText: "刷新"
         }
     },
-    '@vuepress/medium-zoom': {
-        selector: 'img',// 只有添加 class 名为 custom 的图片，才支持缩放
-        // medium-zoom options here
-        // See: https://github.com/francoischalifour/medium-zoom#options
-        options: {
-          margin: 16,
-          background: '#BADA55',
-        }
-      },
+    // '@vuepress/medium-zoom': {
+    //     selector: 'img',// 只有添加 class 名为 custom 的图片，才支持缩放
+    //     // medium-zoom options here
+    //     // See: https://github.com/francoischalifour/medium-zoom#options
+    //     options: {
+    //       margin: 16,
+    //       background: '#BADA55',
+    //     }
+    //   },
     'tabs': true, // tab 选项卡插件
     'one-click-copy': {
         copySelector: ['div[class*="language-"] pre', 'div[class*="aside-code"] aside'], // String or Array
@@ -40,19 +40,19 @@ module.exports = {
         title: {
             mode: "titlecase",
             map: {
-              "/guide/": "教程", //配置根标题
-              "/about/": "关于",
-              "/test/test1/": "测试1",
-              "/test/test2/": "测试2"
+                "/guide/": "教程", //配置根标题
+                "/about/": "关于",
+                "/test/test1/": "测试1",
+                "/test/test2/": "测试2"
             }
         }
     },
     'img-lazy': true, // 图片懒加载
     '@vuepress/active-header-links': true, // 滚动时激活侧边链接的插件
-    '@vuepress-reco/vuepress-plugin-back-to-top':{
+    '@vuepress-reco/vuepress-plugin-back-to-top': {
         visibilityHeight: 300,
-        customStyle:{
-            right:'12%',
+        customStyle: {
+            right: '12%',
             bottom: '6rem',
             width: '3rem',
             height: '3rem',
@@ -61,5 +61,13 @@ module.exports = {
             backgroundColor: 'rgba(231, 234, 241,.5)'
         }
     },// 回到顶部插件
-    '@vuepress-reco/extract-code':true,
-} 
+    '@vuepress-reco/extract-code': true,
+    'vuepress-plugin-image-viewer': {
+        selector: '.theme-default-content', // 你想要的插件起作用的页面的class或id
+        options: {
+            excludeClass: 'no-zoom', // 带有这个className的img标签会被排除
+            "scalable": false, // 是否可翻转
+        },
+    },
+
+}
