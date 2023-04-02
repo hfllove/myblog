@@ -67,7 +67,8 @@ module.exports = {
         options: {
             excludeClass: 'no-zoom', // 带有这个className的img标签会被排除
             "scalable": false, // 是否可翻转
-            "keyboard": false,
+            "keyboard": false,//是否支持键盘
+            "title": false,//当前图片标题
         },
     },
 

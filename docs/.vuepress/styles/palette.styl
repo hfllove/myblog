@@ -21,6 +21,7 @@ $readingProgressImage = linear-gradient(-120deg, #E50743 0%, #F9870F 15%, #E8ED3
     font-size: 1.1em;
 }
 
+
 .viewer-toolbar > ul > li {
     background-color: rgba(0, 0, 0, 50%);
     border-radius: 50%;
@@ -67,4 +68,26 @@ $readingProgressImage = linear-gradient(-120deg, #E50743 0%, #F9870F 15%, #E8ED3
 .viewer-rotate-right::before {
     background-position: -156px 3px;
     content: "Rotate Right";
+}
+.viewer-list {
+    box-sizing: content-box;
+    height: 50px;
+    margin: 0;
+    overflow: hidden;
+    padding: 1px 0;
+}
+.viewer-list > li {
+    color: transparent;
+    cursor: pointer;
+    float: left;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0;
+    height: 50px;
+    line-height: 0;
+    opacity: 0.5;
+    overflow: hidden;
+    transition: opacity 0.15s;
+    width: 30px;
 }
