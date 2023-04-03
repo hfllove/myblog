@@ -2,6 +2,10 @@
 title: about页面
 ---
 
+<!-- <GlobalTableOfContents /> -->
+
+<ChildTableOfContents :header="false" :max="2"  pageUrl="/" />
+
 ## javascript数组转换
 
 这段代码将数组 arr 通过 reduce 方法转换成一个新的数组 result。\

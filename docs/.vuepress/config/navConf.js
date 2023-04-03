@@ -21,6 +21,6 @@ module.exports = [
     },
     { text: '关于', link: '/about/' },
     {text:'戒文',link:'/戒文/'},
-    { text: 'github地址', link: 'https://github.com/hfllove/myblog' },
+    { text: 'Github', link: 'https://github.com/hfllove/myblog' },
     
 ]

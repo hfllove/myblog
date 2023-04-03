@@ -1,6 +1,9 @@
 ---
 title: resize 事件
 ---
+
+<GlobalTableOfContents />
+
 ## 介绍
 `resize` 事件是在浏览器窗口大小改变时触发的事件，可以通过监听该事件来实现一些响应式的布局和样式调整。\
 当浏览器窗口的大小发生变化时，会触发 `resize` 事件，该事件会被绑定到全局的 window 对象上。我们可以使用 `addEventListener` 方法来监听该事件，例如：

@@ -36,7 +36,7 @@ $readingProgressImage = linear-gradient(-120deg, #E50743 0%, #F9870F 15%, #E8ED3
 .viewer-toolbar > ul > li + li {
     margin-left: 5px;
 }
-.viewer-prev,.viewer-next,.viewer-rotate-left {
+.viewer-prev,.viewer-next,.viewer-rotate-left,.viewer-navbar {
     display: none;
 }
 .viewer-zoom-in::before {
@@ -91,4 +91,10 @@ $readingProgressImage = linear-gradient(-120deg, #E50743 0%, #F9870F 15%, #E8ED3
     overflow: hidden;
     transition: opacity 0.15s;
     width: 30px;
+}
+.viewer-toolbar > ul {
+    display: inline-block;
+    margin: 0 auto 50px;
+    overflow: hidden;
+    padding: 6px 3px;
 }

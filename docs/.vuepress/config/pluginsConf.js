@@ -71,5 +71,6 @@ module.exports = {
             "title": false,//当前图片标题
         },
     },
-
+    // 'vuepress-plugin-global-toc': true,
+    'vuepress-plugin-child-toc': true,
 }
