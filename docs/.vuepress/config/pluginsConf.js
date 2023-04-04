@@ -72,5 +72,20 @@ module.exports = {
         },
     },
     // 'vuepress-plugin-global-toc': true,
-    'vuepress-plugin-child-toc': true,
+    'vuepress-plugin-child-toc': true,// 页面目录插件
+    'vuepress-plugin-container':[
+       {
+        type: 'note',
+        defaultTitle: {
+            '/': '小结',
+        },
+      }, 
+       {
+        type: 'test',
+        defaultTitle: {
+            '/': '测试',
+        },
+      }, 
+    ]
+      
 }

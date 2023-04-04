@@ -33,7 +33,10 @@ export default {
     },
   },
   mounted() {
+    // Vue.nextTick(()=>{
       this.changeFixed();
+    // })
+      
   },
   methods: {
     changeFixed() {

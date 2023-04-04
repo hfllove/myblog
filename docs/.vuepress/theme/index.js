@@ -39,22 +39,31 @@ module.exports = (options, ctx) => {
       ['container', {
         type: 'tip',
         defaultTitle: {
-          '/': 'TIP',
-          '/zh/': '提示'
+          '/': '提示',
         }
       }],
       ['container', {
         type: 'warning',
         defaultTitle: {
-          '/': 'WARNING',
-          '/zh/': '注意'
+          '/': '注意',
         }
       }],
       ['container', {
         type: 'danger',
         defaultTitle: {
-          '/': 'DANGER',
-          '/zh/': '警告'
+          '/': '警告',
+        }
+      }],
+      ['container', {
+        type: 'note',
+        defaultTitle: {
+          '/': '小结',
+        }
+      }],
+      ['container', {
+        type: 'test',
+        defaultTitle: {
+          '/': '测试',
         }
       }],
       ['container', {
