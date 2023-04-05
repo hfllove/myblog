@@ -2,6 +2,7 @@
   <main class="page" ref="page">
     <slot name="top" />
     <div class="page-container" ref="pageContainer">
+      <ChildTable />
       <Content class="theme-default-content" />
       <PageEdit />
       <PageNav v-bind="{ sidebarItems }" />
@@ -16,12 +17,13 @@ import PageEdit from "@theme/components/PageEdit.vue";
 import PageNav from "@theme/components/PageNav.vue";
 // 自定义组件 右侧目录
 import SideAnchor from "@theme/components/SideAnchor.vue";
+import ChildTable from "@theme/components/ChildTable.vue"
 // 自定义组件 页面目录
 // import ChildTableOfContentsVue from "@theme/components/ChildTableOfContentsVue.vue"
 import Vue from "vue";
 
 export default {
-  components: { PageEdit, PageNav, SideAnchor},
+  components: { PageEdit, PageNav, SideAnchor,ChildTable},
   props: ["sidebarItems"],
   watch: {
     // 监视路由的变化，在下一次更新DOM的时候，调用 changeFixed 函数
@@ -74,11 +76,11 @@ export default {
 
 .page-container {
   // background-color: #c7f2d1;
-  letter-spacing: 2px !important;
+  // letter-spacing: 2px;
   max-width: 800px;
   // min-height: 900px;
   margin: 0 auto;
-  padding: 2rem 2rem 2rem;
+  padding: 4rem 2rem 2rem;
   // background-color: #fff;
   background-color: rgba(250, 249, 222, 0.9) !important;
   // background: rgba(0,0,0,0);

@@ -1,5 +1,9 @@
 const path = require('path')
 const { resolve } = require('path')
+// 解决命名冲突
+const sharedUtils = require('@vuepress/shared-utils')
+const myPath = sharedUtils.path
+// console.log(childPath,"测试。。。。")
 
 /**
  * @type {import('@vuepress/types').Theme<import('@vuepress/types').DefaultThemeConfig>}
@@ -28,9 +32,10 @@ module.exports = (options, ctx) => {
       }
     },
     'enhanceApp': [
-        resolve(__dirname, './enhanceApp.js')
+        resolve(__dirname, './enhanceApp.js'),
+        myPath.resolve(__dirname,'./enhanceApp.js')
     ],
-    'components': ['SideAnchor'],
+    components: ['SideAnchor','ChildTable'],
     plugins: [
       ['@vuepress/active-header-links', options.activeHeaderLinks],
       '@vuepress/search',
