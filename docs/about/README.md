@@ -4,7 +4,7 @@ title: 如何写好技术文档
 
 <!-- <GlobalTableOfContents /> -->
 
-<ChildTableOfContents :header="false" :max="2"  pageUrl="/" />
+<!-- <ChildTableOfContents :header="false" :max="2"  pageUrl="/" /> -->
 
 ## 准备
 写技术型文档时，提前做好思维导图可以帮助你组织思路、构建文档结构、梳理文档内容和细节等，有助于提高文档的质量和效率。
@@ -39,11 +39,5 @@ title: 如何写好技术文档
 
 
 :::note
-
 写好技术类型的文档需要有清晰的结构和语言、详细的介绍和解释、充分的示例和演示、明确的目标和读者群，以及及时的更新和反馈等技能和技巧。
-
-:::
-
-:::test
-alkdflsdlwaeb-s是打发斯蒂芬啥地方是
 :::

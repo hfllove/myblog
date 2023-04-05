@@ -1,5 +1,6 @@
 const path = require('path')
 const { resolve } = require('path')
+
 /**
  * @type {import('@vuepress/types').Theme<import('@vuepress/types').DefaultThemeConfig>}
  */
@@ -26,12 +27,10 @@ module.exports = (options, ctx) => {
         //   path.resolve(__dirname, 'components/SideAnchor.vue'),
       }
     },
-      'enhanceApp': [
-          resolve(__dirname, './enhanceApp.js')
-      ],
-  
-      'components': 'SideAnchor'
-    ,
+    'enhanceApp': [
+        resolve(__dirname, './enhanceApp.js')
+    ],
+    'components': ['SideAnchor'],
     plugins: [
       ['@vuepress/active-header-links', options.activeHeaderLinks],
       '@vuepress/search',
@@ -58,12 +57,6 @@ module.exports = (options, ctx) => {
         type: 'note',
         defaultTitle: {
           '/': '小结',
-        }
-      }],
-      ['container', {
-        type: 'test',
-        defaultTitle: {
-          '/': '测试',
         }
       }],
       ['container', {

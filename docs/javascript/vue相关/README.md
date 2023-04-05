@@ -2,7 +2,6 @@
 title: resize 事件
 ---
 
-<GlobalTableOfContents />
 
 ## 介绍
 `resize` 事件是在浏览器窗口大小改变时触发的事件，可以通过监听该事件来实现一些响应式的布局和样式调整。\

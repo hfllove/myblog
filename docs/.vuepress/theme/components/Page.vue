@@ -14,11 +14,14 @@
 <script>
 import PageEdit from "@theme/components/PageEdit.vue";
 import PageNav from "@theme/components/PageNav.vue";
+// 自定义组件 右侧目录
 import SideAnchor from "@theme/components/SideAnchor.vue";
+// 自定义组件 页面目录
+// import ChildTableOfContentsVue from "@theme/components/ChildTableOfContentsVue.vue"
 import Vue from "vue";
 
 export default {
-  components: { PageEdit, PageNav, SideAnchor },
+  components: { PageEdit, PageNav, SideAnchor},
   props: ["sidebarItems"],
   watch: {
     // 监视路由的变化，在下一次更新DOM的时候，调用 changeFixed 函数

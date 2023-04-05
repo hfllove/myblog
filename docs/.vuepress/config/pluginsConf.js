@@ -71,21 +71,14 @@ module.exports = {
             "title": false,//当前图片标题
         },
     },
-    // 'vuepress-plugin-global-toc': true,
     'vuepress-plugin-child-toc': true,// 页面目录插件
-    'vuepress-plugin-container':[
-       {
-        type: 'note',
-        defaultTitle: {
-            '/': '小结',
-        },
-      }, 
-       {
-        type: 'test',
-        defaultTitle: {
-            '/': '测试',
-        },
-      }, 
+    'vuepress-plugin-container': [
+        {
+            type: 'note',
+            defaultTitle: {
+                '/': '小结',
+            },
+        }
     ]
-      
+
 }
