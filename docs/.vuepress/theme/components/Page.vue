@@ -147,7 +147,7 @@ export default {
 }
 
 .theme-default-content:not(.custom) {
-  padding: 2rem 0;
+  padding: 0 0;
 }
 
 .page-edit {

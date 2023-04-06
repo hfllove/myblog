@@ -1,10 +1,12 @@
 <template>
 <ul>
-    <li v-for="item in items" :key="item.path">
-        <router-link :to="item.path">{{item.title || item.path}}</router-link>
-        <ul v-if="header && itemHeaders(item.headers)">
-            <li v-for="header in itemHeaders(item.headers)" :key="header.slug">
-                <router-link :to="item.path + '#' + header.slug">{{header.title}}</router-link>
+    <!-- <span class="total">目录</span> -->
+    <li v-for="item in items" :key="item.path" class="total">
+        <router-link :to="item.path" class="totalA">{{item.title || item.path}}</router-link>
+        <!-- <ul v-if="header && itemHeaders(item.headers)"> -->
+        <ul v-if="itemHeaders(item.headers)">
+            <li v-for="(header,index) in itemHeaders(item.headers)" :key="header.slug">
+                <router-link :to="item.path + '#' + header.slug"> {{index+1}}. {{header.title}}</router-link>
             </li>
         </ul>
     </li>
@@ -23,7 +25,7 @@ export default {
     props: {
         header: {
             type: Boolean,
-            default: false
+            default: true
         },
         pageUrl: {
             type: String,
@@ -41,11 +43,13 @@ export default {
     computed: {
         items() {
             const currentUrl = (this.pageUrl || this.$page.regularPath);
+            console.log(currentUrl,"####currentUrl值")
             return this.itemChilds(currentUrl);
         }
     },
     methods: {
         allChilds() {
+            console.log(this.$site.pages,"####this.$site.pages的值")
             return this.$site.pages
                 .sort((a, b) => {
                     const aOrder = a.frontmatter && a.frontmatter.order;
@@ -60,21 +64,23 @@ export default {
         },
         itemChilds(currentUrl) {
             return this.allChilds().filter(p => {
-                if (!p.regularPath.startsWith(currentUrl) || p.regularPath === currentUrl) {
-                    return false;
-                }
-
-                const split = p.regularPath.substr(currentUrl.length).split("/");
-
-                if (p.regularPath.endsWith("/") && split.length === 2) {
+                console.log(p.regularPath,"####p.regularPath的值")
+                if (p.regularPath.startsWith(currentUrl) && p.regularPath === currentUrl) {
                     return true;
                 }
+                // 截掉 regularPath 中的 currentUrl字符串，剩下部分即为当前子页面相对于当前路径的文件或目录名
+                // const split = p.regularPath.substr(currentUrl.length).split("/");
+                // console.log(split,"###split")
+                // // 判断 regularPath 是否以 "/"结尾，并且数组长度是否为2，如果是，则说明当前页面是当前路径下的第二级目录页面
+                // if (p.regularPath.endsWith("/") && split.length === 2) {
+                //     return true;
+                // }
+                // // 判断 regularPath 是否以 ".html" 结尾，并且数组长度是否为1，如果是，则说明当前页码是当前路径下的第一级目录页面
+                // if (p.regularPath.endsWith(".html") && split.length === 1) {
+                //     return true;
+                // }
 
-                if (p.regularPath.endsWith(".html") && split.length === 1) {
-                    return true;
-                }
-
-                return false;
+                // return false;
             });
         },
         itemHeaders(headers) {
@@ -103,3 +109,25 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+ul {
+    padding-left:0;
+}
+ul li {
+    list-style: none;
+}
+ul li .totalA {
+    font-size: 18px;
+    font-weight: 600;
+}
+ul li ul li {
+    list-style: none;
+    padding-left: 1rem;
+    font-size: 16px;
+}
+.total {
+    /* font-weight: 600; */
+    font-size: 18px;
+}
+</style>
