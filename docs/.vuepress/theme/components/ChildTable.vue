@@ -43,13 +43,13 @@ export default {
     computed: {
         items() {
             const currentUrl = (this.pageUrl || this.$page.regularPath);
-            console.log(currentUrl,"####currentUrl值")
+            // console.log(currentUrl,"####currentUrl值")
             return this.itemChilds(currentUrl);
         }
     },
     methods: {
         allChilds() {
-            console.log(this.$site.pages,"####this.$site.pages的值")
+            // console.log(this.$site.pages,"####this.$site.pages的值")
             return this.$site.pages
                 .sort((a, b) => {
                     const aOrder = a.frontmatter && a.frontmatter.order;
@@ -64,7 +64,7 @@ export default {
         },
         itemChilds(currentUrl) {
             return this.allChilds().filter(p => {
-                console.log(p.regularPath,"####p.regularPath的值")
+                // console.log(p.regularPath,"####p.regularPath的值")
                 if (p.regularPath.startsWith(currentUrl) && p.regularPath === currentUrl) {
                     return true;
                 }
