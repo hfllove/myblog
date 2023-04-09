@@ -1,7 +1,7 @@
 module.exports = [
     { text: '首页', link: '/' },
     {
-        text: '前端',//一级导航标题
+        text: '前端积累',//一级导航标题
         items: [
             {
                 text: 'javascript', //二级导航标题
@@ -16,6 +16,15 @@ module.exports = [
                     { text: '子分组1', link: '/language/chinese/' },
                     { text: '子分组2', link: '/language/japanese/' }
                 ]
+            }
+        ]
+    },
+    {
+        text: "前端工程",
+        items: [
+            {
+                text: '小程序',
+                link: '/project/小程序/'
             }
         ]
     },

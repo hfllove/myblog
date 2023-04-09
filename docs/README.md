@@ -14,11 +14,6 @@ features:
 footer: MIT Licensed | Copyright © 2023-hfllove
 ---
 
-# pwa 更新提示弹框插件
-测试 pwa 插件
-
-# 测试 github pages的部署分支是否为 gh-pages
-看看部署的分支是不是gh-pages
 
 # 测试 tab选项卡
 
