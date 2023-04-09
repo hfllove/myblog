@@ -57,6 +57,8 @@ view 组件类似于 html 中的 div 块级元素，以下是关于 view 组件�
 :::
 
 ### scroll-view 组件
+>基于以上实例，实现纵向，横向滚动的效果
+
 **1. 实现纵向滚动**
 
 scroll-view 组件通常搭配 scroll-y 组件属性，来实现纵向滚动的效果，以下是纵向滚动的 scroll-view 实例部分内容：
