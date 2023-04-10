@@ -217,3 +217,6 @@ image 组件详见：[组件--媒体组件--image](https://developers.weixin.qq.
 
 ### button 
 button 组件的属性以及用法，比较类似于 element-UI 组件中的 button 组件，在此不详细举例
+
+### image
+image 组件 mode 属性，表示图片裁剪、缩放的模式。具体的属性值和含义，可以参考上面的官方文档。

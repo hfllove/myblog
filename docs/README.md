@@ -14,6 +14,8 @@ features:
 footer: MIT Licensed | Copyright © 2023-hfllove
 ---
 
+## B站黑马小程序视频
+[微信小程序学习](https://www.bilibili.com/video/BV1834y1676P/?p=19&vd_source=383d958999bc6841badec4b1b44b3b84)
 
 # 测试 tab选项卡
 
@@ -42,5 +44,3 @@ footer: MIT Licensed | Copyright © 2023-hfllove
   <img src="/images/carbon.png" slot="demo" />
 </RecoDemo>
 
-## 蚂蚁庄园脚本
-https://github.com/TonyJiangWJ/Ant-Forest
