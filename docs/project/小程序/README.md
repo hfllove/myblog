@@ -124,3 +124,5 @@ scroll-view 组件通常搭配 scroll-x 组件属性，来实现横向滚动的�
 scroll-view 横向滚动效果如下：
 
 ![Snipaste_2023-04-09_22-51-18](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/Snipaste_2023-04-09_22-51-18.93b6xgfkbqw.webp)
+
+## swiper 和 swiper-item 
