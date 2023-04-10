@@ -42,4 +42,5 @@ footer: MIT Licensed | Copyright © 2023-hfllove
   <img src="/images/carbon.png" slot="demo" />
 </RecoDemo>
 
-
+## 蚂蚁庄园脚本
+https://github.com/TonyJiangWJ/Ant-Forest

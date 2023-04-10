@@ -125,4 +125,95 @@ scroll-view 横向滚动效果如下：
 
 ![Snipaste_2023-04-09_22-51-18](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/Snipaste_2023-04-09_22-51-18.93b6xgfkbqw.webp)
 
-## swiper 和 swiper-item 
+## swiper 和 swiper-item 组件
+>参考官方文档 [组件--视图容器--swiper组件](https://developers.weixin.qq.com/miniprogram/dev/component/swiper.html)
+
+### swiper常用属性
+- indicator-dots  是否显示面板指示点
+- indicator-color 指示点颜色  
+- indicator-active-color  当前选中的指示点颜色
+- autoplay  是否自动切换
+- interval  自动切换时间间隔
+- circular  是否采用衔接滑动
+
+### 实例
+- WXML 
+```html
+<!-- 轮播图的结构 -->
+<swiper class="swiper-container" indicator-dots="true" indicator-color="white" 
+indicator-active-color="gray" autoplay interval="3000" circular="true">
+  <!-- 第一个轮播图 -->
+  <swiper-item>
+    <view class="item">A</view>
+  </swiper-item>
+  ...
+</swiper>
+```
+
+- WXSS
+```css
+.swiper-container {
+  height: 150px;
+}
+.item {
+  height: 100%;
+  line-height: 150px;
+  text-align: center;
+}
+swiper-item:nth-child(1) .item {
+  background-color: lightgreen;
+}
+swiper-item:nth-child(2) .item {
+  background-color: lightskyblue;
+}
+swiper-item:nth-child(3) .item {
+  background-color: lightpink;
+}
+```
+### 展示效果
+
+gif所在路径：D:\Documents\oCam
+
+
+## text 和 rich-text 组件
+
+### 介绍
+text 和 rich-text 是关于页面基础内容的组件，即文本。
+
+详细的介绍和说明，可以参考官方文档 [组件--基础内容--text](https://developers.weixin.qq.com/miniprogram/dev/component/text.html)
+
+### text 属性 user-select
+>user-select:  控制文本是否可选，该属性会使文本节点显示为 inline-block
+
+- WXML
+```html
+<!-- 常用的基础内容组件 text -->
+<view>
+手机号支持长按选中效果
+<text  user-select>12312312312</text>
+</view>
+```
+
+### rich-text
+参考官方文档 [组件--基础内容--rich-text](https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html)
+
+**1. 实例**
+
+- WXML
+```html
+<rich-text nodes="<h1 style='color:red;'>标题</h1>"></rich-text>
+```
+
+**2. 效果**
+
+以上代码实现的效果如下：
+
+![Snipaste_2023-04-10_11-26-34](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/Snipaste_2023-04-10_11-26-34.211p0ciyu95s.webp)
+
+## button 和 image 组件
+button 组件详见：[组件--表单组件--button](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)
+
+image 组件详见：[组件--媒体组件--image](https://developers.weixin.qq.com/miniprogram/dev/component/image.html)
+
+### button 
+button 组件的属性以及用法，比较类似于 element-UI 组件中的 button 组件，在此不详细举例
