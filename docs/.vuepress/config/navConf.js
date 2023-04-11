@@ -4,17 +4,24 @@ module.exports = [
         text: '前端积累',//一级导航标题
         items: [
             {
-                text: 'javascript', //二级导航标题
+                text: 'Javascript', //二级导航标题
                 items: [
-                    { text: 'vue相关', link: '/javascript/vue相关/' },//三级导航标题
-                    { text: '数组方法', link: '/javascript/数组方法/' }
+                    { text: 'vue 相关', link: '/web/javascript/vue相关/' },//三级导航标题
+                    { text: '数组方法', link: '/web/javascript/数组方法/' }
                 ]
             },
             {
-                text: '分组2',
+                text:'CSS',
+                items:[
+                    {text:'css 布局',link:'/web/css/css布局/'},
+                    {text:'css 样式',link:'/web/css/css样式/'}
+                ]
+            },
+            {
+                text:'jQuery',
                 items: [
-                    { text: '子分组1', link: '/language/chinese/' },
-                    { text: '子分组2', link: '/language/japanese/' }
+                    {text:'jquery 练习',link:'/web/jquery/jquery练习/'},
+                    {text:'jquery 实例',link:'/web/jquery/jquery实例/'}
                 ]
             }
         ]
@@ -25,6 +32,10 @@ module.exports = [
             {
                 text: '小程序',
                 link: '/project/小程序/'
+            },
+            {
+                text: 'vue 项目',
+                link: '/project/vue项目/'
             }
         ]
     },
