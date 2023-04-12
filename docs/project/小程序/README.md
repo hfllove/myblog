@@ -172,7 +172,7 @@ swiper-item:nth-child(3) .item {
 ```
 ### 展示效果
 
-gif所在路径：D:\Documents\oCam
+![dfsd45s4f_2023_04_12_16_07_32_997](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/dfsd45s4f_2023_04_12_16_07_32_997.74riscow5z80.gif)
 
 
 ## text 和 rich-text 组件
