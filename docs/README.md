@@ -15,6 +15,8 @@ footer: MIT Licensed | Copyright © 2023-hfllove
 ---
 ## this 的四个绑定规则
 [this 的四个绑定规则](https://juejin.cn/post/7132032582832635934#heading-3)
+## Javascript 高级-思维导图
+[Javascript 高级-思维导图](https://www.zhixi.com/drawing/52a9fc946a1a977d51806b991a729e97?page=owner&current=1)
 ## B站黑马小程序视频
 [微信小程序学习](https://www.bilibili.com/video/BV1834y1676P/?p=19&vd_source=383d958999bc6841badec4b1b44b3b84)
 
