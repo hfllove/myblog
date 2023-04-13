@@ -6,8 +6,9 @@ module.exports = [
             {
                 text: 'Javascript', //二级导航标题
                 items: [
-                    { text: 'vue 相关', link: '/web/javascript/vue相关/' },//三级导航标题
-                    { text: '数组方法', link: '/web/javascript/数组方法/' }
+                    { text: '面试题集', link: '/web/javascript/面试题集/' },//三级导航标题
+                    { text: '对象方法', link: '/web/javascript/对象方法/' },
+                    { text: 'dom事件', link: '/web/javascript/dom事件/' },
                 ]
             },
             {
