@@ -6,7 +6,6 @@ module.exports = [
             {
                 text: 'Javascript', //二级导航标题
                 items: [
-                    { text: '面试题集', link: '/web/javascript/面试题集/' },//三级导航标题
                     { text: '对象方法', link: '/web/javascript/对象方法/' },
                     { text: 'dom事件', link: '/web/javascript/dom事件/' },
                 ]
@@ -36,12 +35,34 @@ module.exports = [
             },
             {
                 text: 'vue 项目',
-                link: '/project/vue项目/'
+                items: [
+                    {
+                        text: '后台项目',
+                        link: '/project/后台项目/'
+                    },
+                    {
+                        text: '前台项目',
+                        link: '/project/前台项目/'
+                    }
+                ]
             }
         ]
     },
+    {
+        text:'面试题集',
+        items: [
+            {
+                text: 'javascript',
+                link: '/job/javascript/'
+            },
+            {
+                text: 'vue',
+                link: '/job/vue/'
+            }
+        ]
+    
+    },
     { text: '关于', link: '/about/' },
-    {text:'戒文',link:'/戒文/'},
     { text: 'Github', link: 'https://github.com/hfllove/myblog' },
     
 ]
