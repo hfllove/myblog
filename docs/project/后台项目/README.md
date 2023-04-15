@@ -199,7 +199,7 @@ export function login(data) {
 >为了设置登录验证，以及简化代码，提高代码质量，所以要在项目中二次封装 axios。\
 该项目中的二次封装配置文件，相对路径为 `src/utils/request.js`
 
-用于登录验证的 token 具体流程如下图所示：
+用于登录验证的 token 具体用法如下图所示：
 
 ![sd9fs89sdf](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/sd9fs89sdf.2pa6mss07f60.webp)
 
