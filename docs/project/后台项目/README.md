@@ -44,17 +44,168 @@ src 文件下的树形目录结构如下：
 |  ├── assets/                  // (打包后会被编译)静态资源
 |  ├── components/              // 一般放置非路由组件的全局组件
 |  ├── icons/                   // 放置一些svg图片资源
-|  ├── layout/                  // 放置一些组件和混入的地方
+|  ├── layout/                  // 放置整体布局组件的地方
 |  ├── router/                  // 配置路由
 |  ├── store/                   // 配置vuex
 |  ├── styles/                  // 放置css样式文件
 |  ├── utils/                   // 配置token令牌以及网页标题的地方
 |  └── views/                   // 放置(非全局)路由组件的地方
 ```
+## 项目前置
+在展开项目之前，需要先对 项目中的 axios 进行二次封装，以及对请求跨域进行 webpack 配置
+### axios 二次封装
+>为了设置登录验证，以及简化代码，提高代码质量，所以要在项目中二次封装 axios。\
+该项目中的二次封装配置文件，相对路径为 `src/utils/request.js`
+
+用于登录验证的 token 具体用法如下图所示：
+
+![sd9fs89sdf](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/sd9fs89sdf.2pa6mss07f60.webp)
+
+该项目中的 axios 二次封装主要实现以下功能：
+
+- 在请求前添加了一个请求拦截器，用于在请求头中添加 token 字段，以便后端验证用户身份。
+- 在响应后添加了一个响应拦截器，用于判断请求的状态码并给出相应的提示信息，同时在 token 过期或非法的情况下，弹出确认框提示用户重新登录。
+
+具体来说，代码中的 service 对象通过 `axios.create()` 创建一个新的 axios 实例，并设置了一些默认配置，例如请求的超时时间、请求的基础 URL 等。该对象同时添加了请求拦截器和响应拦截器，分别对请求和响应做出了处理。
+```javascript
+const service = axios.create({
+  baseURL: process.env.VUE_APP_BASE_API, // 根据环境变量的不同，设置不同的请求前缀
+  timeout: 5000 // 超时时间
+})
+```
+在请求拦截器中，我们通过 `config.headers['token'] = getToken()` 的方式在请求头中添加了一个名为 token 的字段，该字段的值为当前用户的 token。
+```javascript
+service.interceptors.request.use(
+  config => {
+    if (store.getters.token) {
+      config.headers['token'] = getToken()
+    }
+    return config
+  },
+  error => {
+    console.log(error)
+    return Promise.reject(error)
+  }
+)
+```
+在响应拦截器中，我们首先判断响应的状态码，如果不是 20000 或者 200，则说明请求失败，此时我们使用 Element UI 的 Message 组件给出相应的错误提示信息。如果状态码是 50008、50012 或者 50014，则说明用户的 token 不合法或者已经过期，此时我们弹出确认框提示用户重新登录。
+```javascript
+service.interceptors.response.use(
+  response => {
+    const res = response.data
+
+    // 服务器响应失败干什么
+    if (res.code !== 20000 && res.code !==200) {
+      Message({
+        message: res.message || 'Error',
+        type: 'error',
+        duration: 5 * 1000
+      })
+      // 如果状态码是 50008、50012 或者 50014，
+      // 则说明用户的 token 不合法或者已经过期，此时我们弹出确认框提示用户重新登录。
+      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+        // to re-login
+        MessageBox.confirm('You have been logged out, ...', 'Confirm logout', {
+          confirmButtonText: 'Re-Login',
+          cancelButtonText: 'Cancel',
+          type: 'warning'
+        }).then(() => {
+          store.dispatch('user/resetToken').then(() => {
+            location.reload()
+          })
+        })
+      }
+      return Promise.reject(new Error(res.message || 'Error'))
+    } else {
+      // 服务器响应成功干什么
+      return res
+    }
+  },
+  error => {
+    console.log('err' + error) // for debug
+    Message({
+      message: error.message,
+      type: 'error',
+      duration: 5 * 1000
+    })
+    return Promise.reject(error)
+  }
+)
+```
+最后，我们将该 service 对象导出供其他模块使用。在实际开发中，我们可以通过引入该模块来发起 HTTP 请求，从而与后端进行数据交互。
+```javascript
+export default service
+```
+### webpack 代理跨域
+在 `vue.config.js` 文件中，使用 webpack 配置解决跨域问题：
+```javascript
+module.exports = {
+  ...
+  devServer: {
+    port: port,
+    open: true,
+    overlay: {
+      warnings: false,
+      errors: true
+    },
+    // webpack配置代理跨域
+    proxy: {
+      '/dev-api/admin/acl': {  // /dev-api 表示拦截以/dev-api开头的请求路径
+        target: 'http://39.98.123.211:8170', // 跨域的域名
+        changeOrigin: true, // 是否开启跨域
+        // 修改最终请求的路径，也就是说最终访问的时候会把'dev-api'命名删除掉
+        pathRewrite: { '^/dev-api': '' } 
+      },
+      '/dev-api/admin/product': {
+        target: 'http://39.98.123.211:8510',
+        changeOrigin: true,
+        pathRewrite: { '^/dev-api': '' }
+      }
+    },
+    //###1 开启mock数据
+    after: require('./mock/mock-server.js')
+
+  },
+  ...
+}
+```
+
+## 项目路由组件
+
+项目的路由组件需要在 `router` 文件夹中进行注册。下面是创建组件并将其注册为路由组件的一个实例：
+
+`src/view/product` 文件夹下，创建一个 tradeMark 文件夹，放置 tradeMark 平台属性组件代码。在 `src/router/index.js`中将其注册为路由组件
+
+```javascript
+export const asyncRoutes = [
+{
+    path: '/product',
+    component: Layout,
+    name: 'Product',
+    meta: {title:'商品管理',icon: 'el-icon-goods'},
+    children: [
+      ...
+      {
+        path: 'trademark',
+        name: 'Trademark',
+        component: ()=> import('@/views/product/tradeMark'),
+        meta: {title: '品牌管理'}
+      },
+      ...
+    ]
+  }
+]
+```
+通过上述代码，可以实现点击侧边栏 layout 组件，进行当前页面刷新的路由跳转
+
 ## 项目功能模块
+
 项目的功能模块，包括登录、
 
-### 登录模块(待完善)
+### 登录模块
+
+![Snipaste_2023-04-16_08-51-52](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/Snipaste_2023-04-16_08-51-52.2qkra0sqmnq0.webp)
+
 该模块是为了实现用户登录后台管理系统的功能，同时通过路由守卫以实现不同角色的权限分配。
 
 #### 1. 静态结构
@@ -195,88 +346,206 @@ export function login(data) {
 }
 ```
 
-#### 4. axios 的二次封装
->为了设置登录验证，以及简化代码，提高代码质量，所以要在项目中二次封装 axios。\
-该项目中的二次封装配置文件，相对路径为 `src/utils/request.js`
+#### 4. vuex 处理 API 请求
 
-用于登录验证的 token 具体用法如下图所示：
+>vuex 是存储数据的仓库，包括处理派发自页面的服务器请求\
+文件路径：`src/store/modules/user.js`
 
-![sd9fs89sdf](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/sd9fs89sdf.2pa6mss07f60.webp)
-
-该项目中的 axios 二次封装主要实现以下功能：
-
-- 在请求前添加了一个请求拦截器，用于在请求头中添加 token 字段，以便后端验证用户身份。
-- 在响应后添加了一个响应拦截器，用于判断请求的状态码并给出相应的提示信息，同时在 token 过期或非法的情况下，弹出确认框提示用户重新登录。
-
-具体来说，代码中的 service 对象通过 `axios.create()` 创建一个新的 axios 实例，并设置了一些默认配置，例如请求的超时时间、请求的基础 URL 等。该对象同时添加了请求拦截器和响应拦截器，分别对请求和响应做出了处理。
-```javascript
-const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // 根据环境变量的不同，设置不同的请求前缀
-  timeout: 5000 // 超时时间
-})
-```
-在请求拦截器中，我们通过 `config.headers['token'] = getToken()` 的方式在请求头中添加了一个名为 token 的字段，该字段的值为当前用户的 token。
-```javascript
-service.interceptors.request.use(
-  config => {
-    if (store.getters.token) {
-      config.headers['token'] = getToken()
-    }
-    return config
-  },
-  error => {
-    console.log(error)
-    return Promise.reject(error)
-  }
-)
-```
-在响应拦截器中，我们首先判断响应的状态码，如果不是 20000 或者 200，则说明请求失败，此时我们使用 Element UI 的 Message 组件给出相应的错误提示信息。如果状态码是 50008、50012 或者 50014，则说明用户的 token 不合法或者已经过期，此时我们弹出确认框提示用户重新登录。
-```javascript
-service.interceptors.response.use(
-  response => {
-    const res = response.data
-
-    // 服务器响应失败干什么
-    if (res.code !== 20000 && res.code !==200) {
-      Message({
-        message: res.message || 'Error',
-        type: 'error',
-        duration: 5 * 1000
-      })
-      // 如果状态码是 50008、50012 或者 50014，
-      // 则说明用户的 token 不合法或者已经过期，此时我们弹出确认框提示用户重新登录。
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
-        // to re-login
-        MessageBox.confirm('You have been logged out, ...', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }).then(() => {
-          store.dispatch('user/resetToken').then(() => {
-            location.reload()
-          })
-        })
-      }
-      return Promise.reject(new Error(res.message || 'Error'))
+在 actions 配置对象中，将从组件派发的请求发送到服务器，进行用户登录名称和密码的校验。如果返回结果成功，那么将服务器返回的 token 提交到 mutations 配置项中，并且将 token 进行本地存储，使数据持久化。
+```js
+const actions = {
+	// 用户登录的请求
+	async login({ commit }, userInfo) {
+    const { username, password } = userInfo
+    // 校验用户登录的名称和密码
+    let result = await login({ username: username.trim(), password: password })
+    if (result.code == 20000 || result.code == 200) {
+    // console.log(result)
+    commit('SET_TOKEN', result.data.token)
+    setToken(result.data.token)
+    return 'ok'
     } else {
-      // 服务器响应成功干什么
-      return res
+    return new Promise.reject(Error('fail'))
     }
-  },
-  error => {
-    console.log('err' + error) // for debug
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
-    return Promise.reject(error)
-  }
-)
+},
 ```
-最后，我们将该 service 对象导出供其他模块使用。在实际开发中，我们可以通过引入该模块来发起 HTTP 请求，从而与后端进行数据交互。
+mutations 配置项中，将 token 存储到 state 存储函数中
 ```javascript
-export default service
+const mutations = {
+  SET_TOKEN: (state, token) => {
+    state.token = token
+  },
+}
+```
+### 退出登录
+
+当用户登录进入后台管理系统首页时，点击首页右侧的 `退出登录` 按钮，可以让用户退出当前登录的账号
+
+![Snipaste_2023-04-16_09-17-08](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/Snipaste_2023-04-16_09-17-08.18hqaqv6yxk0.webp)
+
+#### 1. 静态结构
+
+> 文件路径：src/layout/components/Navbar.vue
+
+退出登录功能被包含在一个简易的导航栏中，这个导航栏是用 `el-dropdown` 这个组件实现的，具体代码如下：
+
+```html
+<div class="navbar">
+    ...
+    <div class="right-menu">
+      <el-dropdown class="avatar-container" trigger="click">
+        ...
+        <el-dropdown-menu slot="dropdown" class="user-dropdown">
+          <router-link to="/">
+            <el-dropdown-item>首页</el-dropdown-item>
+          </router-link>
+          <el-dropdown-item divided @click.native="logout">
+            <span style="display:block;">退出登录</span>
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
+  </div>
 ```
 
+<details> 
+<summary><font size="4" color="orange">el-dropdown 的结构</font></summary> 
+<pre><code>el-dropdown 包括两个子组件 el-dropdown-menu 与 el-dropdown-item</code>
+</pre></details>
 
+#### 2. 业务逻辑
+
+点击 `退出登录`按钮，组件向 vuex 派发请求，在 vuex 中处理服务器的请求，组件接收请求返回的结果，如果成功，将进行路由的跳转
+
+以下是绑定到`退出登录` 按钮的 logout 回调函数具体实现：
+
+```js
+methods: {
+  async logout() {
+    await this.$store.dispatch('user/logout')
+    this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+	}
+}
+```
+
+#### 3. API 接口处理
+
+> 文件路径：src/api/user.js
+
+以下是定义好的 API 接口配置：
+
+```js
+// 用户退出登录的请求
+export function logout() {
+  return request({
+    url: '/admin/acl/index/logout',
+    method: 'post'
+  })
+}
+```
+
+#### 4. vuex 中移除 token
+在 actions 配置项中，带着存储在 state 存储函数中的 token，向服务器发请求，如果返回的结果为成功，则移除本地的 token，重置路由，提交重置 state 数据到 mutations。
+
+```js
+// 用户退出登录
+async logout({ commit, state }) {
+  let result = await logout(state.token)
+  if(result.code == 20000 || result.code == 200) {
+    removeToken()
+    resetRouter()
+    commit('RESET_STATE')
+    return 'ok'
+  }else {
+    return new Promise.reject(Error('fail'))
+  }
+},
+```
+然后在 mutations 中去完成重置 state 数据
+```javascript
+const getDefaultState = () => {
+  return {
+    // 用户登录验证的token
+    token: getToken(),
+    ...
+  }
+}
+
+const state = getDefaultState()
+const mutations = {
+  RESET_STATE: (state) => {
+    Object.assign(state, getDefaultState())
+  },
+}
+```
+### 品牌管理模块
+>通过品牌管理模块，能够实现对品牌的名称、图片进行修改和删除
+
+![Snipaste_2023-04-17_12-08-32](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/Snipaste_2023-04-17_12-08-32.as5tik98fvk.webp)
+
+#### 1. 静态结构
+**1.1 品牌列表** 
+
+品牌管理模块用 `el-table` 组件与 `el-table-column` 组件来展示品牌的数据。
+
+`el-table-column` 组件是以列来展示的。
+- `el-table-column` 组件的 `prop` 属性表示对应列内容的字段名
+
+关于上面两个组件的具体说明，可前往 [table 表格](https://element.eleme.cn/#/zh-CN/component/table#table-attributes) 查看
+```html
+<el-table :data="list" style="width: 100%" border>
+  <!-- 展示品牌数据 -->
+  <el-table-column
+    label="序号"
+    type="index"
+    width="80px"
+    align="center"
+  ></el-table-column>
+  <el-table-column
+    label="品牌名称"
+    prop="tmName"
+    width=""
+  ></el-table-column> 
+</el-table>
+```
+对于操作品牌数据，则需要 `template` 模板来获取当前行的数据对象 `row` (`$index` 表示当前遍历的序列值)，以下是一个示例
+```html
+...
+<el-table-column label="操作" prop="prop" width="">
+  <template slot-scope="{ row }">
+    <el-button
+      type="warning"
+      icon="el-icon-edit"
+      size="mini"
+      @click="updateTradeMark(row)"
+    >
+      修改
+    </el-button>
+  </template>
+</el-table-column>
+```
+该例中，将当前行的数据对象 `row`传入到事件回调函数 updateTradeMark 中，通过回调函数修改 `row` 的值，实现修改按钮的功能
+
+**1.2 底部分页**
+
+`el-pagination` 组件实现底部的分页。
+
+`el-pagination` 分页组件主要包含以下内容：
+- 属性：当前页码数 `current-page`、总页数 `total`、每页展示的条数 `page-size`、以及可选每页条数 `page-sizes`、按钮的数量 `pager-count`
+- 事件：`@current-change` (自定义事件，默认传入当前点击页码page的值。) 、`@size-change` (自定义事件，当分页器某一页需要展示数据的条数发生改变时会触发)
+
+下面是分页组件结构的代码：
+```html
+<el-pagination
+  style="margin-top: 20px; text-align: center"
+  @size-change="handleSizeChange"
+  @current-change="getPageList"
+  :current-page="page"
+  :pager-count="7"
+  :page-sizes="[3, 5, 10]"
+  :page-size="limit"
+  layout=" prev, pager, next, jumper,->, sizes,total"
+  :total="total"
+>
+</el-pagination>
+```
