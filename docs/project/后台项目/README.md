@@ -270,8 +270,23 @@ export const asyncRoutes = [
     点击登录
 </el-button>
 ```
+#### 2. API 接口处理
+在用户登录进行路由跳转之前，需要向服务器发请求，获取用户信息。因此，在使用 API 接口之前，需要进行预配置。
 
-#### 2. 业务逻辑
+`src/api/user.js`中配置 API 请求：
+```javascript
+import request from '@/utils/request'
+
+// 用户登录的请求
+export function login(data) {
+  return request({
+    url: '/admin/acl/index/login',
+    method: 'post',
+    data
+  })
+}
+```
+#### 3. 业务逻辑
 
 当用户输入相应的用户名和密码，点击登录之后，需要对用户输入的信息进行验证，验证完毕，再加载 loading 登录的动画效果。如果登录成功，则进行路由的跳转，否则停止加载登录动效。实现代码如下：
 
@@ -328,22 +343,6 @@ watch: {
       immediate: true
     }
 },
-```
-#### 3. API 接口处理
-在用户登录进行路由跳转之前，需要向服务器发请求，获取用户信息。因此，在使用 API 接口之前，需要进行预配置。
-
-`src/api/user.js`中配置 API 请求：
-```javascript
-import request from '@/utils/request'
-
-// 用户登录的请求
-export function login(data) {
-  return request({
-    url: '/admin/acl/index/login',
-    method: 'post',
-    data
-  })
-}
 ```
 
 #### 4. vuex 处理 API 请求
@@ -413,22 +412,7 @@ const mutations = {
 <pre><code>el-dropdown 包括两个子组件 el-dropdown-menu 与 el-dropdown-item</code>
 </pre></details>
 
-#### 2. 业务逻辑
-
-点击 `退出登录`按钮，组件向 vuex 派发请求，在 vuex 中处理服务器的请求，组件接收请求返回的结果，如果成功，将进行路由的跳转
-
-以下是绑定到`退出登录` 按钮的 logout 回调函数具体实现：
-
-```js
-methods: {
-  async logout() {
-    await this.$store.dispatch('user/logout')
-    this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-	}
-}
-```
-
-#### 3. API 接口处理
+#### 2. API 接口处理
 
 > 文件路径：src/api/user.js
 
@@ -441,6 +425,20 @@ export function logout() {
     url: '/admin/acl/index/logout',
     method: 'post'
   })
+}
+```
+#### 3. 业务逻辑
+
+点击 `退出登录`按钮，组件向 vuex 派发请求，在 vuex 中处理服务器的请求，组件接收请求返回的结果，如果成功，将进行路由的跳转
+
+以下是绑定到`退出登录` 按钮的 logout 回调函数具体实现：
+
+```js
+methods: {
+  async logout() {
+    await this.$store.dispatch('user/logout')
+    this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+	}
 }
 ```
 
@@ -549,3 +547,80 @@ const mutations = {
 >
 </el-pagination>
 ```
+#### 2. 挂载 API 到 Vue 原型上
+在 `src/api/product/tradeMark.js` 中配置 API 请求。将 product 文件夹下的请求文件，统一引入到 `src/api/index.js` 中，并进行对外暴露
+```javascript
+// 将四个模块请求的接口函数统一暴露
+import * as trademark from './product/tradeMark'
+import * as spu from './product/spu'
+import * as sku from './product/sku'
+import * as attr from './product/attr'
+import * as user from './acl/user'
+//###1 由于role、permission都是默认暴露，所以引入的时候要给它起一个名字
+import  role from './acl/role'
+import  permission from './acl/permission'
+
+// 对外暴露 
+export default {
+    trademark,
+    spu,
+    sku,
+    attr,
+    user,
+    role,
+    permission
+}
+```
+在 `main.js` 中引入该公共配置，并且将它注册到 Vue 原型上，这样就可以在任意组件上去使用这些挂载的 API
+```javascript
+import API from '@/api'
+
+Vue.prototype.$API = API
+```
+#### 3. 组件上获取分页数据
+
+在 data 存储函数中进行分页数据和品牌展示列表数据的初始化
+```javascript
+data () {
+  return {
+    list: [],
+    // 初始化数据
+    // 每页的条数
+    limit: 3,
+    // 当前页
+    page: 1,
+    // 总页数
+    total: 0,
+  },
+}
+```
+在 methods 属性中定义获取品牌属性列表数据的方法
+```javascript
+methods: {
+  // 获取品牌列表数据
+  async getPageList(pager = 1) {
+    this.page = pager;
+    const { limit, page } = this;
+    let result = await this.$API.trademark.reqPageList(page, limit);
+    // console.log(result)
+    if (result.code == 200) {
+      this.list = result.data.records;
+      this.total = result.data.total;
+    }
+  },
+},
+```
+当组件生命周期挂载完成，就执行上面的方法
+```javascript
+mounted() {
+    this.getPageList();
+},
+```
+那么，这样就通过服务器请求的方式，更新了 data 存储函数中的初始化数据，再通过页面结构中的 elementUI 组件绑定组件上数据，就实现了从组件到页面的数据传入
+```html
+<el-table :data="list" style="width: 100%" border>
+  ...
+</el-table>
+```
+
+[b站后台项目视频链接](https://www.bilibili.com/video/BV1Vf4y1T7bw/?p=128&vd_source=383d958999bc6841badec4b1b44b3b84)
