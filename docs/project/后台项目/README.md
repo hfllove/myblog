@@ -198,6 +198,18 @@ export const asyncRoutes = [
 ```
 通过上述代码，可以实现点击侧边栏 layout 组件，进行当前页面刷新的路由跳转
 
+## 页面动态渲染的流程图
+
+![a3sdfsrs2-2023-03-30-1558](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/a3sdfsrs2-2023-03-30-1558.2fd5javnzrms.webp)
+
+页面动态渲染数据的流程大致如下：
+
+1. 构建页面静态结构
+2. 组件上定义事件函数或方法
+3. vuex 或者 组件上发请求获取服务器数据
+4. 在组件定义的事件函数或方法中，处理服务器返回的数据
+5. 页面中通过 vue 的模板指令动态的展示组件上的数据
+
 ## 项目功能模块
 
 项目的功能模块，包括登录、
@@ -209,67 +221,11 @@ export const asyncRoutes = [
 该模块是为了实现用户登录后台管理系统的功能，同时通过路由守卫以实现不同角色的权限分配。
 
 #### 1. 静态结构
+el-form 组件结构应用实例(一)
 
-使用 `el-form` 组件进行用户信息的收集，通过它的 *model* 属性收集表单数据，以及 *rules* 进行表单验证。而 `el-form` 组件通常在内部搭配 `el-form-item` 组件。
-```html
-<el-form 
-    ref="loginForm" 
-    :model="loginForm" 
-    :rules="loginRules" 
-    class="login-form" 
-    auto-complete="on" 
-    label-position="left">
+- el-form-item 组件结构应用实例(一)
 
-    <el-form-item></el-form-item>
-</el-form>
-```
-在 `el-form-item` 组件内部，用 `el-input` 组件实现用户名和密码的输入。通过 *v-model* 属性收集用户名和密码。
-
-用户名的收集
-```html
-<el-form-item prop="username">
-    <span class="svg-container">
-        <svg-icon icon-class="user" />
-    </span>
-    <el-input
-        ref="username"
-        v-model="loginForm.username"
-        placeholder="Username"
-        name="username"
-        type="text"
-        tabindex="1"
-        auto-complete="on"
-    />
-</el-form-item>
-```
-密码的收集
-```html
-<el-form-item prop="password">
-    ...
-    <el-input
-        :key="passwordType"
-        ref="password"
-        v-model="loginForm.password"
-        :type="passwordType"
-        placeholder="Password"
-        name="password"
-        tabindex="2"
-        auto-complete="on"
-        @keyup.enter.native="handleLogin"
-    />
-    ...
-</el-form-item>
-```
-收集完用户名和密码，需要通过点击 `el-button` 登录按钮，提交收集的用户数据，实现登录功能。
-```html
-<el-button 
-    :loading="loading" 
-    type="primary" 
-    style="width:100%;margin-bottom:30px;" 
-    @click.native.prevent="handleLogin">
-    点击登录
-</el-button>
-```
+- el-button 应用实例(一)
 #### 2. API 接口处理
 在用户登录进行路由跳转之前，需要向服务器发请求，获取用户信息。因此，在使用 API 接口之前，需要进行预配置。
 
@@ -483,70 +439,26 @@ const mutations = {
 
 #### 1. 静态结构
 **1.1 品牌列表** 
+> `src/views/product/tradeMark/index.vue`
 
 品牌管理模块用 `el-table` 组件与 `el-table-column` 组件来展示品牌的数据。
 
-`el-table-column` 组件是以列来展示的。
-- `el-table-column` 组件的 `prop` 属性表示对应列内容的字段名
+*静态展示*：
 
-关于上面两个组件的具体说明，可前往 [table 表格](https://element.eleme.cn/#/zh-CN/component/table#table-attributes) 查看
-```html
-<el-table :data="list" style="width: 100%" border>
-  <!-- 展示品牌数据 -->
-  <el-table-column
-    label="序号"
-    type="index"
-    width="80px"
-    align="center"
-  ></el-table-column>
-  <el-table-column
-    label="品牌名称"
-    prop="tmName"
-    width=""
-  ></el-table-column> 
-</el-table>
-```
-对于操作品牌数据，则需要 `template` 模板来获取当前行的数据对象 `row` (`$index` 表示当前遍历的序列值)，以下是一个示例
-```html
-...
-<el-table-column label="操作" prop="prop" width="">
-  <template slot-scope="{ row }">
-    <el-button
-      type="warning"
-      icon="el-icon-edit"
-      size="mini"
-      @click="updateTradeMark(row)"
-    >
-      修改
-    </el-button>
-  </template>
-</el-table-column>
-```
-该例中，将当前行的数据对象 `row`传入到事件回调函数 updateTradeMark 中，通过回调函数修改 `row` 的值，实现修改按钮的功能
+el-table 与 el-table-column 应用实例(一)
+
+*点击事件*：
+
+el-dialog 应用实例(一)
+- el-upload 应用实例(一)
+
+row 与 template 应用实例(一)
 
 **1.2 底部分页**
 
 `el-pagination` 组件实现底部的分页。
 
-`el-pagination` 分页组件主要包含以下内容：
-- 属性：当前页码数 `current-page`、总页数 `total`、每页展示的条数 `page-size`、以及可选每页条数 `page-sizes`、按钮的数量 `pager-count`
-- 事件：`@current-change` (自定义事件，默认传入当前点击页码page的值。) 、`@size-change` (自定义事件，当分页器某一页需要展示数据的条数发生改变时会触发)
-
-下面是分页组件结构的代码：
-```html
-<el-pagination
-  style="margin-top: 20px; text-align: center"
-  @size-change="handleSizeChange"
-  @current-change="getPageList"
-  :current-page="page"
-  :pager-count="7"
-  :page-sizes="[3, 5, 10]"
-  :page-size="limit"
-  layout=" prev, pager, next, jumper,->, sizes,total"
-  :total="total"
->
-</el-pagination>
-```
+el-pagination 应用实例(一)
 #### 2. 挂载 API 到 Vue 原型上
 在 `src/api/product/tradeMark.js` 中配置 API 请求。将 product 文件夹下的请求文件，统一引入到 `src/api/index.js` 中，并进行对外暴露
 ```javascript
@@ -594,15 +506,14 @@ data () {
   },
 }
 ```
-在 methods 属性中定义获取品牌属性列表数据的方法
+在 methods 属性中定义获取品牌属性列表数据以及分页数据的方法
 ```javascript
 methods: {
-  // 获取品牌列表数据
+  // 获取品牌列表数据以及分页数据
   async getPageList(pager = 1) {
     this.page = pager;
     const { limit, page } = this;
     let result = await this.$API.trademark.reqPageList(page, limit);
-    // console.log(result)
     if (result.code == 200) {
       this.list = result.data.records;
       this.total = result.data.total;
@@ -622,5 +533,3 @@ mounted() {
   ...
 </el-table>
 ```
-
-[b站后台项目视频链接](https://www.bilibili.com/video/BV1Vf4y1T7bw/?p=128&vd_source=383d958999bc6841badec4b1b44b3b84)

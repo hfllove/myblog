@@ -8,6 +8,7 @@ module.exports = [
                 items: [
                     { text: '对象方法', link: '/web/javascript/对象方法/' },
                     { text: 'dom事件', link: '/web/javascript/dom事件/' },
+                    { text: '基础', link: '/web/javascript/基础/' },
                 ]
             },
             {
