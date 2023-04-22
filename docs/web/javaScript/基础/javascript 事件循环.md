@@ -19,4 +19,4 @@ process.nextTick(callback)类似 node.js 版的"setTimeout"，在事件循环的
 - 接着执行所有微任务，如果有 process.nextTick(callback)，则在异步微任务前，执行该回调函数
 - 然后再按照顺序进入一个宏任务，执行里面所有的微任务
 
-原文链接：https://juejin.cn/post/6844903512845860872
+[原文链接](https://juejin.cn/post/6844903512845860872)
