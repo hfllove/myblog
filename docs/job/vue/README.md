@@ -1,5 +1,5 @@
 ---
-title: vue 面试题
+title: 面试题
 ---
 ## cookie 和 session 的区别
 [cookie 和 session 的区别](https://juejin.cn/post/6844903937523482631)\
@@ -9,3 +9,4 @@ title: vue 面试题
 
 ### 优缺点
 ### 应用
+## MVVM 模型的理解
