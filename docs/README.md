@@ -10,7 +10,7 @@ features:
 - title: 博客简介
   details: 这是一个主要用来记录个人搭建前端项目步骤，以及项目搭建过程中所产生问题的技术博客
 - title: 其他
-  details: 同时也会记录一些有关于 javascript，以及 git 操作命令方面的知识
+  details: 同时也会记录一些有关于面试，以及 git 操作命令方面的知识
 footer: MIT Licensed | Copyright © 2023-hfllove
 ---
 ## this 的四个绑定规则
