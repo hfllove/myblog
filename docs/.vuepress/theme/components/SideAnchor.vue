@@ -176,7 +176,7 @@ function deepClone(obj, clonedMap = new WeakMap()) {
     position: fixed;
     top: 38px;
     /*right: 11rem;*/
-    right: 14%;
+    left: 82%;
     font-size: .9rem;
 }
 .right-menu-wrapper .right-menu-margin {
