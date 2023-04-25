@@ -6,7 +6,7 @@ title: 浏览器扩展程序
 Clearly Reader（阅读助手）\
 CSDN: 浏览器助手\
 Docs Online Viewer（在线 docs 文档阅读）\
-IDM Integration Module（IDM 下载插件）\
+IDM Integration Module（IDM 下载插件） [油小猴-多线程下载器IDM](https://www.youxiaohou.com/zh-cn/idm.html#%E5%94%A4%E8%B5%B7-idm-%E4%B8%8B%E8%BD%BD)\
 OneTab （浏览器标签页）\
 PDF Viewer（pdf 阅读插件）\
 Vue.js devtools （Vue 插件）\
