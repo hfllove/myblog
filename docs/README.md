@@ -13,6 +13,8 @@ features:
   details: 同时也会记录一些有关于面试，以及 git 操作命令方面的知识
 footer: MIT Licensed | Copyright © 2023-hfllove
 ---
+## 坐高铁教程视频
+[坐高铁视频](https://www.bilibili.com/video/BV13e4y1H7g1/?spm_id_from=333.337.search-card.all.click&vd_source=383d958999bc6841badec4b1b44b3b84)
 ## this 的四个绑定规则
 [this 的四个绑定规则](https://juejin.cn/post/7132032582832635934#heading-3)
 ## Javascript 高级-思维导图
