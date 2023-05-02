@@ -53,10 +53,6 @@ module.exports = [
         text:'面试题集',
         items: [
             {
-                text: 'javascript',
-                link: '/job/javascript/'
-            },
-            {
                 text: 'vue',
                 link: '/job/vue/'
             }
