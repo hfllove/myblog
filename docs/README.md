@@ -13,7 +13,7 @@ features:
   details: 同时也会记录一些有关于面试，以及 git 操作命令方面的知识
 footer: MIT Licensed | Copyright © 2023-hfllove
 ---
-## 用户登录问题(电商项目)
+## 用户登录问题(电商项目视频)
 [尚品汇前台项目视频](https://www.bilibili.com/video/BV1Vf4y1T7bw/?p=89&vd_source=383d958999bc6841badec4b1b44b3b84)
 ## 坐高铁教程视频
 [坐高铁视频](https://www.bilibili.com/video/BV13e4y1H7g1/?spm_id_from=333.337.search-card.all.click&vd_source=383d958999bc6841badec4b1b44b3b84)
