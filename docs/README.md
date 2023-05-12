@@ -13,6 +13,8 @@ features:
   details: 同时也会记录一些有关于面试，以及 git 操作命令方面的知识
 footer: MIT Licensed | Copyright © 2023-hfllove
 ---
+## uniapp 开发小程序视频
+[uniapp 开发小程序视频](https://www.bilibili.com/video/BV1mT411K7nW?p=15&vd_source=383d958999bc6841badec4b1b44b3b84)
 ## 深入 javascript 视频
 [深入 javascript 视频](https://www.bilibili.com/video/BV1Gx4y177Ax?p=2&vd_source=383d958999bc6841badec4b1b44b3b84)
 ## nodejs 教程
