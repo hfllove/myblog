@@ -55,7 +55,7 @@ console.log('sync 1');
 new Promise((resolve) => {
   console.log('async');
   resolve();
-}).then(() =>; {
+}).then(() => {
   console.log('microtask');
 });
 
