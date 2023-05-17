@@ -127,4 +127,5 @@ person2.greeting() // Hi! I'm 张三.
 之前有提到，`this` 可以用在构造函数中，表示<font color="#ff4500">实例对象</font>。\
 [this 关键字](https://wangdoc.com/javascript/oop/this)\
 <font color='#ff4500'>测试md的字体颜色</font>\
-<font color='#1ba784'>测试 md 的字体颜色</font>
+<font color='#1ba784'>测试 md 的字体颜色</font>\
+<font color='#ef3473'>测试 md 的字体颜色</font>
