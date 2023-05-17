@@ -52,7 +52,7 @@ microtask
 ```js
 console.log('sync 1');
 
-new Promise((resolve) =>; {
+new Promise((resolve) => {
   console.log('async');
   resolve();
 }).then(() =>; {
