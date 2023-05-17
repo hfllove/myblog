@@ -126,4 +126,5 @@ person2.greeting() // Hi! I'm 张三.
 `this` 关键字是一个非常重要的语法点。毫不夸张地说，不理解它的含义，大部分开发任务都无法完成。\
 之前有提到，`this` 可以用在构造函数中，表示<font color="#ff4500">实例对象</font>。\
 [this 关键字](https://wangdoc.com/javascript/oop/this)\
-<font color='#ff4500'>测试md的字体颜色</font>
+<font color='#ff4500'>测试md的字体颜色</font>\
+<font color='#1ba784'>测试 md 的字体颜色</font>
