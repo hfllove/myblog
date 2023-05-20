@@ -40,10 +40,8 @@ module.exports = {
         title: {
             mode: "titlecase",
             map: {
-                "/guide/": "教程与链接", //配置根标题
+                "/guide/": "重点罗列", //配置根标题
                 "/about/": "关于",
-                "/test/test1/": "测试1",
-                "/test/test2/": "测试2"
             }
         }
     },
