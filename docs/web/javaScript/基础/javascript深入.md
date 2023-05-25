@@ -33,7 +33,7 @@ bar();
 
 而每个执行上下文包含三个重要的部分：<font color='#ff4500'>变量对象(Variable Object)</font>、<font color='#ff4500'>作用域链(Scope Chain)</font>和 <font color='#ff4500'>this 指向</font>。
 
-## 执行过程
+### 执行过程
 执行上下文的代码会分成两个阶段进行处理：分析和执行，我们也可以叫做：
 
 <font color='#158bb8'>进入执行上下文</font>
