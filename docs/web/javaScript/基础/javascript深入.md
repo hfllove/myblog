@@ -31,7 +31,7 @@ bar();
 - 函数执行上下文：当函数执行时，会创建一个新的函数执行上下文，用于存储函数内部的变量、函数和参数等信息。
 - eval 执行上下文：在使用 eval 函数时，会在当前执行上下文中创建一个新的 eval 执行上下文。
 
-而每个执行上下文包含三个重要的部分：<font color='#ff4500'>变量对象(Variable Object)</font>、<font color='#ff4500'>作用域链(Scope Chain)</font>和 <font color='#ff4500'>this 指向</font>。
+而每个执行上下文包含三个重要的部分：<font color='#ff4500'>变量对象</font>(Variable Object)、<font color='#ff4500'>作用域链</font>(Scope Chain)和 <font color='#ff4500'>this 指向</font>。
 
 ### 执行过程
 执行上下文的代码会分成两个阶段进行处理：分析和执行，我们也可以叫做：
