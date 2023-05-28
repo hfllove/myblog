@@ -40,7 +40,7 @@ title: 网道 javascript 笔记
 - 构造函数生成实例对象必须用 `new` 命令
 
 **new 命令原理**\
-![yuanxingtu](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/yuanxingtu.5p12pk3jrsc0.webp)
+![yuanxingtu](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/yuanxingtu.5p12pk3jrsc0.webp)\
 使用new命令时，它后面的函数依次执行下面的步骤。
 
 创建一个空对象，作为将要返回的对象实例。\
