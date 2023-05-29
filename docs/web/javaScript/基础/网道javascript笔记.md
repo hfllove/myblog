@@ -29,17 +29,17 @@ title: 网道 javascript 笔记
 
 ### 实例对象与 new 命令
 
-**对象**\
+#### 1. 对象
 对象是单个实物的抽象。\
 对象是一个容器，封装了属性和方法。属性是对象的状态，方法是对象的行为
 
-**构造函数**\
+#### 2. 构造函数
 构造函数就是用来生成实例的函数，是实例对象的模板。一个构造函数可以生成多个实例对象\
-**构造函数的特点**
+#### 3. 构造函数的特点
 - 构造函数的内部使用了 `this` 关键字，它代表了所要生成的实例对象
 - 构造函数生成实例对象必须用 `new` 命令
 
-**new 命令原理**\
+#### 4. new 命令原理
 ![yuanxingtu](https://cdn.staticaly.com/gh/hfllove/image-hosting@main/yuanxingtu.5p12pk3jrsc0.webp)\
 使用new命令时，它后面的函数依次执行下面的步骤。
 
@@ -105,7 +105,7 @@ function _new(/* 构造函数 */ constructor, /* 构造函数参数 */ params) {
 var actor = _new(Person, '张三', 28);
 ```
 
-**Object.create() 创建实例对象**\
+#### 5. Object.create() 创建实例对象
 这个方法是以现有的实例对象作为模板，生成新的实例对象。
 ```js
 var person1 = {
