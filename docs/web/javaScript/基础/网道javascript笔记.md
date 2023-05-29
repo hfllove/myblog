@@ -123,7 +123,7 @@ person2.greeting() // Hi! I'm 张三.
 ```
 上述代码中，person1 对象是 person2 的模板，后者继承了前者的方法和属性
 ### this 关键字
-**涵义**\
+#### 1. 涵义
 `this` 关键字是一个非常重要的语法点。毫不夸张地说，不理解它的含义，大部分开发任务都无法完成。\
 之前有提到，`this` 可以用在构造函数中，表示<font color="#158bb8">实例对象</font>。\
 [this 关键字](https://wangdoc.com/javascript/oop/this)
