@@ -12,6 +12,10 @@
                     :class="['side-anchor-link', { 'active': index === activeIndex }]">
                     {{ item.content }}
                 </a>
+                <router-link :to="item.path + '#' + header.slug" @click="scrollToHeader(header.slug)">
+                    {{index+1}}. {{header.title}}
+                </router-link>
+
             </div>
         </div>
     </div>
@@ -37,6 +41,19 @@ export default {
     },
 
     methods: {
+          scrollToHeader(slug) {
+            // 根据slug定位相应的标题元素
+            const headerElement = document.getElementById(slug);
+            if (headerElement) {
+              // 计算滚动位置，可以根据需要进行微调
+              const scrollPosition = headerElement.offsetTop - 100; // 调整滚动位置的偏移量
+              // 执行滚动操作
+              window.scrollTo({
+                top: scrollPosition,
+                behavior: 'smooth' // 可以设置为 'auto' 或 'smooth' 控制滚动效果
+              });
+            }
+          },
         getAnchorList() {
             this.title = this.$page.title;
             let dom_list = this.routeList
