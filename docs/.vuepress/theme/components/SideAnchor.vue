@@ -55,7 +55,7 @@ export default {
                     href: value.href,
                     // 控制右侧标题到边框的距离
                     prefix: (value.parentNode.tagName.slice(1) - baseLine+1) * 1 + 'rem',
-                    offsetTop: value.parentNode.offsetTop - 4rem,
+                    offsetTop: value.parentNode.offsetTop,
                     active: false
                 })
             )
