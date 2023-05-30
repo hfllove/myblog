@@ -70,9 +70,9 @@ export default {
             let innerhHeight = window.innerHeight;
             let scope = [
                 scrollTop,
-                scrollTop + innerhHeight / 3
+                scrollTop + innerhHeight / 4
             ];
-            let middleLine = scrollTop + innerhHeight / 2;
+            let middleLine = scrollTop + innerhHeight / 3;
             let list = this.list;
             let nextActive = -1;
             list.forEach(
