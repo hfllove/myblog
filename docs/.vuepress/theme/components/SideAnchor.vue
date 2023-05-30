@@ -9,9 +9,10 @@
                 :style="{ 'padding-left': item.prefix }">
                 <a 
                     :href="item.href" 
-                    :class="['side-anchor-link', { 'active': index === activeIndex }]">
-                    {{ item.content }}
+                    :class="['side-anchor-link', { 'active': index === activeIndex }]" 
                     @click="scrollToSection(item.offsetTop)"
+                    >
+                    {{ item.content }}
                 </a>
        
             </div>
