@@ -79,6 +79,7 @@ export default {
             let nextActive = -1;
             list.forEach(
                 (value, index) => {
+                    console.log(value.offsetTop,22222)
                     if (nextActive === -1 && value.offsetTop > scope[0] && value.offsetTop < scope[1]) nextActive = index;
                     if (nextActive === -1  && middleLine < value.offsetTop) nextActive = index - 1;
                 }
