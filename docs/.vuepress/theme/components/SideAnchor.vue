@@ -10,7 +10,6 @@
                 <a 
                     :href="item.href" 
                     :class="['side-anchor-link', { 'active': index === activeIndex }]" 
-                    @click="scrollToSection(item.offsetTop)"
                     >
                     {{ item.content }}
                 </a>
@@ -40,13 +39,6 @@ export default {
     },
 
     methods: {
-        scrollToSection(offsetTop) {
-            // 使用原生JavaScript或其他滚动库来执行滚动操作
-            window.scrollTo({
-              top: offsetTop - 100,
-              behavior: 'smooth', // 可选，实现平滑滚动效果
-            });
-          },
         getAnchorList() {
             this.title = this.$page.title;
             let dom_list = this.routeList
