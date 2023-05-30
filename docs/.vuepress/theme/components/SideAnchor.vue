@@ -73,6 +73,9 @@ export default {
                 scrollTop + innerhHeight / 3
             ];
             let middleLine = scrollTop + innerhHeight / 2;
+            console.log(middleLine,1111)
+            console.log(scrollTop,2222)
+            console.log(innerHeight,3333)
             let list = this.list;
             let nextActive = -1;
             list.forEach(
