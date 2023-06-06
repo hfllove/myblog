@@ -29,7 +29,7 @@ module.exports = [
         ]
     },
     {
-        text: "前端工程",
+        text: "前端项目",
         items: [
             {
                 text: '小程序',
@@ -47,6 +47,10 @@ module.exports = [
                         link: '/project/前台项目/'
                     }
                 ]
+            },
+            {
+                text: '项目功能',
+                link:'/project/项目功能/'
             }
         ]
     },
