@@ -35,7 +35,7 @@ jobs:
         run: |
          cd docs/.vuepress/dist
          git config --global init.defaultBranch main
-         echo 'myblog.hfllog.space' > CNAME
+         echo 'myblog.hfllove.ip-ddns.com' > CNAME
          git init
          git config user.name "hfllove"
          git config user.email "${{ secrets.GIT_EMAIL }}"
